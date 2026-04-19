@@ -1,0 +1,2156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Pushkaraj Ambalgi — Engineering Portfolio / MMXXVI</title>
+<meta name="description" content="Mechanical R&D Engineer — FEA, CAE, Vehicle Dynamics, Product Design. Nine selected works, 2021–2026." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500&family=JetBrains+Mono:wght@300;400;500;600&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+
+<style>
+/* ═══════════════════════════════════════════════════
+   Design tokens — editorial / engineering monograph
+   ═══════════════════════════════════════════════════ */
+:root {
+  --bone: #f2ede3;
+  --bone-2: #ebe4d6;
+  --ink: #1a1815;
+  --ink-2: #2c2925;
+  --ink-muted: #5a5550;
+  --rule: #c9bfad;
+  --paper: #f7f3ea;
+  --accent: #c8371d;      /* Mercedes signal red */
+  --accent-deep: #8f2713;
+  --ochre: #b8873a;
+  --blueprint: #1e3a5f;
+
+  --f-display: "Fraunces", "Cormorant Garamond", Georgia, serif;
+  --f-body: "Instrument Sans", "Helvetica Neue", Arial, sans-serif;
+  --f-mono: "JetBrains Mono", "SF Mono", Menlo, monospace;
+
+  --w-max: 1320px;
+  --w-read: 680px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bone);
+  color: var(--ink);
+  font-family: var(--f-body);
+  font-size: 16px;
+  line-height: 1.6;
+  font-feature-settings: "ss01", "kern";
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* Paper grain overlay */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.35;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.1 0 0 0 0 0.09 0 0 0 0 0.08 0 0 0 0.08 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  mix-blend-mode: multiply;
+}
+
+/* ═══════════════════════════════════════════════════
+   Navigation — slim editorial top bar
+   ═══════════════════════════════════════════════════ */
+.nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  padding: 18px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--f-mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  mix-blend-mode: difference;
+  color: #f2ede3;
+}
+.nav a { color: inherit; text-decoration: none; transition: opacity 0.2s; }
+.nav a:hover { opacity: 0.55; }
+.nav-mark { font-family: var(--f-display); font-style: italic; font-size: 14px; text-transform: none; letter-spacing: 0; font-weight: 500; }
+.nav-links { display: flex; gap: 32px; }
+.nav-links span { opacity: 0.55; }
+@media (max-width: 780px) {
+  .nav { padding: 14px 20px; }
+  .nav-links { gap: 18px; font-size: 10px; }
+  .nav-links .hide-sm { display: none; }
+}
+
+/* ═══════════════════════════════════════════════════
+   Shared primitives
+   ═══════════════════════════════════════════════════ */
+.container { max-width: var(--w-max); margin: 0 auto; padding: 0 40px; position: relative; }
+@media (max-width: 780px) { .container { padding: 0 20px; } }
+
+.section-mark {
+  font-family: var(--f-mono);
+  font-size: 11px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.section-mark::before {
+  content: "";
+  display: block;
+  width: 36px;
+  height: 1px;
+  background: var(--accent);
+}
+
+.display-h {
+  font-family: var(--f-display);
+  font-weight: 300;
+  line-height: 0.95;
+  letter-spacing: -0.025em;
+  font-variation-settings: "opsz" 144;
+}
+.display-h em {
+  font-style: italic;
+  font-weight: 400;
+  color: var(--accent-deep);
+}
+
+.caption {
+  font-family: var(--f-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.08em;
+  color: var(--ink-muted);
+  text-transform: uppercase;
+}
+
+.rule { height: 1px; background: var(--rule); width: 100%; }
+
+/* ═══════════════════════════════════════════════════
+   Hero — oversized editorial masthead
+   ═══════════════════════════════════════════════════ */
+.hero {
+  min-height: 100vh;
+  padding: 120px 0 80px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.hero-top {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 24px;
+  align-items: start;
+  border-bottom: 1px solid var(--rule);
+  padding-bottom: 18px;
+  font-family: var(--f-mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+}
+.hero-top .spec { display: flex; gap: 26px; flex-wrap: wrap; }
+.hero-top .spec span strong { color: var(--ink); font-weight: 500; margin-right: 6px; }
+
+.hero-main {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: end;
+  margin-top: 80px;
+}
+@media (max-width: 980px) {
+  .hero-main { grid-template-columns: 1fr; gap: 40px; }
+}
+
+.hero-title {
+  font-size: clamp(60px, 11vw, 180px);
+}
+.hero-title .line {
+  display: block;
+  overflow: hidden;
+}
+.hero-title .line > span {
+  display: inline-block;
+  animation: riseIn 1.1s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+.hero-title .line:nth-child(1) > span { animation-delay: 0.1s; }
+.hero-title .line:nth-child(2) > span { animation-delay: 0.22s; }
+.hero-title .line:nth-child(3) > span { animation-delay: 0.34s; }
+@keyframes riseIn {
+  from { transform: translateY(110%); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.hero-blurb {
+  max-width: 440px;
+  font-size: 17px;
+  line-height: 1.55;
+  color: var(--ink-2);
+  animation: fadeUp 1.4s 0.5s both;
+}
+.hero-blurb .bar {
+  display: block;
+  width: 48px;
+  height: 2px;
+  background: var(--accent);
+  margin-bottom: 20px;
+}
+.hero-blurb em { font-style: italic; color: var(--ink); font-family: var(--f-display); font-weight: 500; }
+
+@keyframes fadeUp {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.hero-bottom {
+  margin-top: 80px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 0;
+  border-top: 1px solid var(--rule);
+  padding-top: 20px;
+  animation: fadeUp 1.4s 0.8s both;
+}
+.hero-bottom > div { padding-right: 20px; border-right: 1px solid var(--rule); padding-left: 20px; }
+.hero-bottom > div:first-child { padding-left: 0; }
+.hero-bottom > div:last-child { border-right: 0; }
+.hero-bottom .k { font-family: var(--f-mono); font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--ink-muted); margin-bottom: 8px; }
+.hero-bottom .v { font-family: var(--f-display); font-size: 18px; font-weight: 400; }
+.hero-bottom .v em { color: var(--accent-deep); font-style: italic; }
+@media (max-width: 780px) {
+  .hero-bottom { grid-template-columns: 1fr 1fr; gap: 20px; }
+  .hero-bottom > div { padding: 12px 0 !important; border: 0; border-bottom: 1px solid var(--rule); }
+}
+
+/* scroll indicator */
+.scroll-cue {
+  position: absolute;
+  bottom: 30px; right: 40px;
+  font-family: var(--f-mono);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+  writing-mode: vertical-rl;
+  animation: fadeUp 1.5s 1.2s both;
+}
+.scroll-cue::after {
+  content: "";
+  display: block;
+  width: 1px;
+  height: 40px;
+  background: var(--ink-muted);
+  margin: 16px auto 0;
+  animation: scrollPulse 2s ease-in-out infinite;
+}
+@keyframes scrollPulse {
+  0%, 100% { transform: scaleY(0.3); transform-origin: top; opacity: 0.3; }
+  50% { transform: scaleY(1); opacity: 1; }
+}
+@media (max-width: 780px) { .scroll-cue { display: none; } }
+
+/* ═══════════════════════════════════════════════════
+   Introduction — two-column editorial spread
+   ═══════════════════════════════════════════════════ */
+.intro {
+  padding: 140px 0;
+  position: relative;
+}
+.intro-grid {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 80px;
+  align-items: start;
+}
+@media (max-width: 980px) { .intro-grid { grid-template-columns: 1fr; gap: 40px; } }
+
+.intro-left { position: sticky; top: 100px; }
+.intro-left h2 {
+  font-family: var(--f-display);
+  font-size: 52px;
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+.intro-left h2 em { font-style: italic; color: var(--accent-deep); }
+
+.intro-right p {
+  font-family: var(--f-display);
+  font-size: 22px;
+  line-height: 1.45;
+  font-weight: 300;
+  max-width: 600px;
+  margin-bottom: 24px;
+  color: var(--ink-2);
+}
+.intro-right p:first-letter {
+  font-family: var(--f-display);
+  font-weight: 500;
+  font-size: 64px;
+  float: left;
+  line-height: 0.9;
+  margin: 6px 10px 0 0;
+  color: var(--accent);
+}
+.intro-right p em { font-style: italic; color: var(--ink); }
+.intro-right p strong { font-weight: 500; color: var(--ink); }
+
+.intro-competencies {
+  margin-top: 50px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0;
+  border-top: 1px solid var(--rule);
+}
+.intro-competencies > div {
+  padding: 14px 0;
+  border-bottom: 1px solid var(--rule);
+  font-family: var(--f-mono);
+  font-size: 12px;
+  letter-spacing: 0.05em;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.intro-competencies > div:nth-child(odd) { padding-right: 24px; }
+.intro-competencies > div:nth-child(even) { padding-left: 24px; border-left: 1px solid var(--rule); }
+.intro-competencies .n {
+  color: var(--accent);
+  font-size: 10px;
+  letter-spacing: 0.15em;
+}
+@media (max-width: 620px) {
+  .intro-competencies { grid-template-columns: 1fr; }
+  .intro-competencies > div { padding: 12px 0 !important; border-left: 0 !important; }
+}
+
+/* ═══════════════════════════════════════════════════
+   Index — table-of-works in magazine index style
+   ═══════════════════════════════════════════════════ */
+.index {
+  padding: 100px 0 140px;
+  background: var(--bone-2);
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+}
+.index-head {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 40px;
+  align-items: end;
+  margin-bottom: 60px;
+}
+@media (max-width: 780px) { .index-head { grid-template-columns: 1fr; } }
+
+.index-head h2 {
+  font-family: var(--f-display);
+  font-size: clamp(48px, 8vw, 110px);
+  font-weight: 300;
+  line-height: 0.95;
+  letter-spacing: -0.025em;
+}
+.index-head h2 em { font-style: italic; color: var(--accent-deep); }
+.index-head .meta {
+  font-family: var(--f-mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+  text-align: right;
+  border-top: 1px solid var(--rule);
+  padding-top: 16px;
+}
+@media (max-width: 780px) { .index-head .meta { text-align: left; } }
+
+.index-list { border-top: 1px solid var(--ink); }
+.index-row {
+  display: grid;
+  grid-template-columns: 60px 1.6fr 1fr 0.8fr 40px;
+  gap: 24px;
+  padding: 22px 0;
+  border-bottom: 1px solid var(--rule);
+  align-items: center;
+  text-decoration: none;
+  color: var(--ink);
+  transition: background 0.3s, padding 0.3s;
+  position: relative;
+}
+.index-row:hover {
+  background: var(--bone);
+  padding-left: 16px;
+  padding-right: 16px;
+}
+.index-row:hover .index-title { color: var(--accent); }
+.index-row:hover .arrow { transform: translateX(4px); color: var(--accent); }
+
+.index-num {
+  font-family: var(--f-mono);
+  font-size: 12px;
+  color: var(--accent);
+  letter-spacing: 0.1em;
+}
+.index-title {
+  font-family: var(--f-display);
+  font-size: 22px;
+  font-weight: 400;
+  line-height: 1.15;
+  transition: color 0.25s;
+}
+.index-title em { font-style: italic; color: var(--accent-deep); }
+.index-org {
+  font-family: var(--f-mono);
+  font-size: 11px;
+  color: var(--ink-muted);
+  letter-spacing: 0.04em;
+}
+.index-year {
+  font-family: var(--f-mono);
+  font-size: 13px;
+  color: var(--ink);
+  text-align: right;
+  letter-spacing: 0.05em;
+}
+.arrow {
+  font-family: var(--f-display);
+  font-size: 22px;
+  color: var(--ink-muted);
+  text-align: right;
+  transition: transform 0.25s, color 0.25s;
+}
+@media (max-width: 780px) {
+  .index-row { grid-template-columns: 40px 1fr 30px; gap: 12px; }
+  .index-org, .index-year { display: none; }
+  .index-title { font-size: 17px; }
+}
+
+/* ═══════════════════════════════════════════════════
+   Project spreads — each work as an editorial feature
+   ═══════════════════════════════════════════════════ */
+.work { padding: 140px 0; border-bottom: 1px solid var(--rule); position: relative; }
+.work:nth-child(even) { background: var(--paper); }
+
+.work-head {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 60px;
+  margin-bottom: 60px;
+  border-bottom: 1px solid var(--ink);
+  padding-bottom: 30px;
+}
+@media (max-width: 980px) { .work-head { grid-template-columns: 1fr; gap: 20px; } }
+
+.work-num {
+  font-family: var(--f-display);
+  font-size: clamp(90px, 16vw, 200px);
+  font-weight: 300;
+  line-height: 0.85;
+  letter-spacing: -0.03em;
+  color: var(--ink);
+  font-style: italic;
+}
+.work-num span { color: var(--accent); font-style: normal; font-family: var(--f-mono); font-size: 14px; vertical-align: top; letter-spacing: 0.15em; display: block; margin-bottom: 12px; }
+
+.work-title {
+  font-family: var(--f-display);
+  font-size: clamp(34px, 5vw, 66px);
+  font-weight: 300;
+  line-height: 1.0;
+  letter-spacing: -0.02em;
+  margin-bottom: 20px;
+}
+.work-title em { font-style: italic; color: var(--accent-deep); }
+
+.work-meta {
+  display: flex;
+  gap: 30px;
+  flex-wrap: wrap;
+  font-family: var(--f-mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+  padding-top: 14px;
+  border-top: 1px solid var(--rule);
+}
+.work-meta strong { color: var(--ink); font-weight: 500; margin-right: 6px; }
+
+.work-body {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 60px;
+  align-items: start;
+}
+@media (max-width: 980px) { .work-body { grid-template-columns: 1fr; gap: 30px; } }
+
+.work-sidebar .label {
+  font-family: var(--f-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 8px;
+}
+.work-sidebar .block { margin-bottom: 28px; font-size: 14px; line-height: 1.5; color: var(--ink-2); }
+.work-sidebar .block:last-child { margin-bottom: 0; }
+
+.work-lead {
+  font-family: var(--f-display);
+  font-size: clamp(20px, 2.2vw, 28px);
+  font-weight: 300;
+  line-height: 1.35;
+  color: var(--ink);
+  border-left: 2px solid var(--accent);
+  padding-left: 24px;
+  margin-bottom: 40px;
+  max-width: 720px;
+}
+.work-lead em { font-style: italic; color: var(--accent-deep); }
+
+.work-section { margin-bottom: 48px; }
+.work-section-h {
+  font-family: var(--f-mono);
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink);
+  margin-bottom: 14px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--rule);
+  display: flex;
+  justify-content: space-between;
+}
+.work-section-h span { color: var(--ink-muted); }
+.work-p { font-size: 16px; line-height: 1.65; color: var(--ink-2); margin-bottom: 14px; max-width: 720px; }
+.work-p strong { color: var(--ink); font-weight: 500; }
+.work-p em { font-style: italic; font-family: var(--f-display); }
+
+.work-list { list-style: none; max-width: 720px; }
+.work-list li {
+  padding: 12px 0 12px 28px;
+  border-bottom: 1px dashed var(--rule);
+  position: relative;
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--ink-2);
+}
+.work-list li::before {
+  content: "→";
+  position: absolute;
+  left: 0; top: 12px;
+  color: var(--accent);
+  font-family: var(--f-mono);
+}
+.work-list li strong { color: var(--ink); font-weight: 500; }
+
+/* ═══════════════════════════════════════════════════
+   Figures — engineering-drawing style
+   ═══════════════════════════════════════════════════ */
+.figure-row { display: grid; gap: 24px; margin: 32px 0; }
+.figure-row.c2 { grid-template-columns: 1fr 1fr; }
+.figure-row.c3 { grid-template-columns: 1fr 1fr 1fr; }
+@media (max-width: 780px) { .figure-row.c2, .figure-row.c3 { grid-template-columns: 1fr; } }
+
+.figure {
+  background: var(--bone);
+  border: 1px solid var(--rule);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.work:nth-child(even) .figure { background: var(--bone); }
+.figure-slot {
+  aspect-ratio: 4 / 3;
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.figure-caption {
+  font-family: var(--f-mono);
+  font-size: 11px;
+  line-height: 1.5;
+  color: var(--ink-muted);
+  letter-spacing: 0.02em;
+}
+.figure-caption .fignum {
+  color: var(--accent);
+  font-weight: 500;
+  margin-right: 6px;
+}
+
+/* Metric cards — big numbers */
+.metric-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  border-top: 1px solid var(--ink);
+  border-bottom: 1px solid var(--ink);
+  margin: 40px 0;
+}
+@media (max-width: 780px) { .metric-grid { grid-template-columns: 1fr; } }
+.metric {
+  padding: 32px 24px;
+  border-right: 1px solid var(--rule);
+}
+.metric:last-child { border-right: 0; }
+@media (max-width: 780px) {
+  .metric { border-right: 0; border-bottom: 1px solid var(--rule); padding: 20px 0; }
+  .metric:last-child { border-bottom: 0; }
+}
+.metric-value {
+  font-family: var(--f-display);
+  font-size: clamp(42px, 5vw, 64px);
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--accent-deep);
+  margin-bottom: 12px;
+}
+.metric-value em { font-style: italic; }
+.metric-value .unit { font-size: 0.5em; color: var(--ink-muted); margin-left: 4px; font-family: var(--f-mono); letter-spacing: 0.05em; }
+.metric-label {
+  font-family: var(--f-mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+  line-height: 1.4;
+}
+
+/* Data tables */
+.data-table { width: 100%; border-collapse: collapse; margin: 24px 0; font-family: var(--f-mono); font-size: 12px; }
+.data-table th, .data-table td { padding: 10px 14px; text-align: left; border-bottom: 1px solid var(--rule); }
+.data-table th { background: var(--ink); color: var(--bone); font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; font-size: 10px; }
+.data-table tr:hover td { background: var(--paper); }
+.data-table td.num { text-align: right; font-variant-numeric: tabular-nums; }
+.data-table .delta-good { color: var(--accent); }
+
+/* ═══════════════════════════════════════════════════
+   SVG figure compositions — bespoke illustrations
+   ═══════════════════════════════════════════════════ */
+.svg-fig svg { width: 100%; height: 100%; display: block; }
+
+/* ═══════════════════════════════════════════════════
+   Education
+   ═══════════════════════════════════════════════════ */
+.edu { padding: 140px 0; background: var(--ink); color: var(--bone); border-bottom: 1px solid var(--rule); }
+.edu .section-mark { color: #e99383; }
+.edu .section-mark::before { background: #e99383; }
+.edu h2 { font-family: var(--f-display); font-size: clamp(48px, 8vw, 110px); font-weight: 300; line-height: 0.95; letter-spacing: -0.025em; margin-bottom: 80px; }
+.edu h2 em { font-style: italic; color: #e99383; }
+
+.edu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; }
+@media (max-width: 900px) { .edu-grid { grid-template-columns: 1fr; gap: 40px; } }
+.edu-card { border-top: 2px solid var(--bone); padding-top: 24px; }
+.edu-card .period { font-family: var(--f-mono); font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; opacity: 0.55; margin-bottom: 10px; }
+.edu-card h3 { font-family: var(--f-display); font-size: 32px; font-weight: 400; line-height: 1.1; margin-bottom: 6px; }
+.edu-card h3 em { font-style: italic; color: #e99383; }
+.edu-card .inst { font-family: var(--f-mono); font-size: 13px; opacity: 0.7; margin-bottom: 20px; letter-spacing: 0.03em; }
+.edu-card p { font-size: 15px; line-height: 1.55; color: #d5cfc1; margin-bottom: 14px; max-width: 520px; }
+.edu-card p strong { color: var(--bone); font-weight: 500; }
+
+/* ═══════════════════════════════════════════════════
+   Tooling appendix
+   ═══════════════════════════════════════════════════ */
+.tooling { padding: 140px 0; }
+.tooling-head { margin-bottom: 60px; max-width: 700px; }
+.tooling-head h2 { font-family: var(--f-display); font-size: clamp(48px, 8vw, 96px); font-weight: 300; line-height: 0.95; letter-spacing: -0.025em; margin-bottom: 20px; }
+.tooling-head h2 em { font-style: italic; color: var(--accent-deep); }
+.tooling-head p { font-size: 17px; color: var(--ink-2); max-width: 560px; }
+
+.tooling-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0; border-top: 1px solid var(--ink); }
+@media (max-width: 780px) { .tooling-grid { grid-template-columns: 1fr; } }
+.tool-cat {
+  padding: 24px 28px 24px 0;
+  border-bottom: 1px solid var(--rule);
+  border-right: 1px solid var(--rule);
+}
+.tool-cat:nth-child(even) { padding-left: 28px; padding-right: 0; border-right: 0; }
+@media (max-width: 780px) {
+  .tool-cat, .tool-cat:nth-child(even) { padding: 20px 0; border-right: 0; }
+}
+.tool-cat h4 { font-family: var(--f-mono); font-size: 10.5px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); margin-bottom: 12px; }
+.tool-cat p { font-family: var(--f-display); font-size: 17px; line-height: 1.45; font-weight: 400; color: var(--ink); }
+.tool-cat p em { font-style: italic; color: var(--accent-deep); }
+
+/* ═══════════════════════════════════════════════════
+   Publication callout
+   ═══════════════════════════════════════════════════ */
+.pub {
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  padding: 28px;
+  margin-top: 24px;
+  max-width: 720px;
+}
+.pub .label {
+  font-family: var(--f-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 10px;
+}
+.pub-title {
+  font-family: var(--f-display);
+  font-size: 18px;
+  line-height: 1.35;
+  font-style: italic;
+  margin-bottom: 6px;
+}
+.pub-cite { font-family: var(--f-mono); font-size: 12px; color: var(--ink-muted); line-height: 1.5; }
+.pub-cite strong { color: var(--ink); }
+.pub-venues { margin-top: 10px; font-family: var(--f-mono); font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent-deep); }
+
+/* ═══════════════════════════════════════════════════
+   Footer / contact
+   ═══════════════════════════════════════════════════ */
+.contact { padding: 140px 0 80px; background: var(--ink); color: var(--bone); position: relative; }
+.contact-head { font-family: var(--f-display); font-size: clamp(56px, 10vw, 140px); font-weight: 300; line-height: 0.9; letter-spacing: -0.03em; margin-bottom: 60px; }
+.contact-head em { font-style: italic; color: #e99383; }
+
+.contact-grid { display: grid; grid-template-columns: 2fr 3fr; gap: 60px; align-items: end; margin-bottom: 80px; }
+@media (max-width: 780px) { .contact-grid { grid-template-columns: 1fr; gap: 40px; } }
+.contact-lead { font-family: var(--f-display); font-size: 22px; font-weight: 300; line-height: 1.4; max-width: 460px; color: #d5cfc1; }
+.contact-lead em { font-style: italic; color: #e99383; }
+
+.contact-info { display: grid; gap: 16px; }
+.contact-info a {
+  color: var(--bone);
+  text-decoration: none;
+  font-family: var(--f-display);
+  font-size: 22px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 0;
+  border-top: 1px solid rgba(242, 237, 227, 0.2);
+  transition: color 0.25s;
+}
+.contact-info a:last-child { border-bottom: 1px solid rgba(242, 237, 227, 0.2); }
+.contact-info a:hover { color: #e99383; }
+.contact-info a .k { font-family: var(--f-mono); font-size: 10.5px; letter-spacing: 0.15em; text-transform: uppercase; opacity: 0.55; }
+
+.colophon {
+  border-top: 1px solid rgba(242, 237, 227, 0.2);
+  padding-top: 24px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  font-family: var(--f-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(242, 237, 227, 0.5);
+}
+.colophon .right { text-align: right; }
+@media (max-width: 780px) { .colophon { grid-template-columns: 1fr; } .colophon .right { text-align: left; } }
+
+/* ═══════════════════════════════════════════════════
+   Scroll-reveal baseline
+   ═══════════════════════════════════════════════════ */
+.reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.9s cubic-bezier(0.2, 0.7, 0.2, 1), transform 0.9s cubic-bezier(0.2, 0.7, 0.2, 1); }
+.reveal.in { opacity: 1; transform: translateY(0); }
+.reveal.delay-1 { transition-delay: 0.1s; }
+.reveal.delay-2 { transition-delay: 0.2s; }
+.reveal.delay-3 { transition-delay: 0.3s; }
+
+/* selection */
+::selection { background: var(--accent); color: var(--bone); }
+
+/* focus */
+a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+
+</style>
+</head>
+<body>
+
+<!-- ═══════════ NAV ═══════════ -->
+<nav class="nav">
+  <a href="#top" class="nav-mark">Pushkaraj <em>Ambalgi</em></a>
+  <div class="nav-links">
+    <a href="#intro"><span>01</span>&nbsp;Intro</a>
+    <a href="#works" class="hide-sm"><span>02</span>&nbsp;Works</a>
+    <a href="#education" class="hide-sm"><span>03</span>&nbsp;Education</a>
+    <a href="#contact"><span>04</span>&nbsp;Contact</a>
+  </div>
+</nav>
+
+<!-- ═══════════ HERO ═══════════ -->
+<section id="top" class="hero">
+  <div class="container">
+    <div class="hero-top">
+      <div class="spec">
+        <span><strong>ENGINEERING PORTFOLIO</strong> MMXXVI</span>
+        <span><strong>VOL.</strong> 01</span>
+        <span><strong>NINE WORKS</strong> 2021 — 2026</span>
+      </div>
+      <div><strong>DALLAS, TX</strong>&nbsp;·&nbsp;USA</div>
+    </div>
+
+    <div class="hero-main">
+      <h1 class="hero-title display-h">
+        <span class="line"><span>Pushkaraj</span></span>
+        <span class="line"><span><em>Ambalgi</em>.</span></span>
+      </h1>
+      <div class="hero-blurb">
+        <span class="bar"></span>
+        <p>Mechanical R&amp;D engineer bridging <em>simulation, structural analysis,</em> and <em>design innovation</em> to engineer solutions that perform in the real world.</p>
+        <p style="margin-top:14px;font-size:15px;color:var(--ink-muted);">Currently pursuing an M.S. in Mechanical Engineering at The University of Texas at Dallas.</p>
+      </div>
+    </div>
+
+    <div class="hero-bottom">
+      <div>
+        <div class="k">Focus</div>
+        <div class="v">FEA <em>·</em> CAE</div>
+      </div>
+      <div>
+        <div class="k">Domains</div>
+        <div class="v">Vehicle <em>·</em> Product</div>
+      </div>
+      <div>
+        <div class="k">Currently</div>
+        <div class="v">M.S. <em>at</em> UTD</div>
+      </div>
+      <div>
+        <div class="k">Status</div>
+        <div class="v"><em>Open</em> to 2026</div>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-cue">Scroll ↓</div>
+</section>
+
+<!-- ═══════════ INTRODUCTION ═══════════ -->
+<section id="intro" class="intro">
+  <div class="container">
+    <div class="section-mark reveal">§ 01 &nbsp;·&nbsp; Introduction</div>
+
+    <div class="intro-grid">
+      <div class="intro-left reveal">
+        <h2>About the <em>work</em>.</h2>
+      </div>
+      <div class="intro-right reveal delay-1">
+        <p>My work sits at the <em>intersection of simulation and physical validation</em> — building models that are useful precisely because they have been checked against a prototype, a test rig, or a standard.</p>
+        <p>I enjoy the translation between the two: taking a messy experimental result and finding the cleanest numerical representation of it, or taking a simulation and figuring out how to prove it in hardware.</p>
+        <p>Across <strong>OEM, academic, and competition</strong> settings I have contributed to speed-bump geometry envelopes used in vehicle validation, Halbach-cylinder magnetic-wheel catalogues for industrial climbing robots, FEA-optimized braking hardware for SAE BAJA India, and an ongoing master's thesis on resilient vector consensus for multi-agent systems.</p>
+
+        <div class="intro-competencies">
+          <div><span>Finite Element Analysis</span><span class="n">01</span></div>
+          <div><span>Vehicle Dynamics &amp; Validation</span><span class="n">02</span></div>
+          <div><span>Mechanical Design &amp; CAD</span><span class="n">03</span></div>
+          <div><span>Multibody Simulation</span><span class="n">04</span></div>
+          <div><span>Manufacturing &amp; Prototyping</span><span class="n">05</span></div>
+          <div><span>Experimental Methods</span><span class="n">06</span></div>
+          <div><span>Product Design (DFMA, QFD)</span><span class="n">07</span></div>
+          <div><span>Controls &amp; Multi-Agent Systems</span><span class="n">08</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ INDEX OF WORKS ═══════════ -->
+<section id="works" class="index">
+  <div class="container">
+    <div class="index-head">
+      <h2 class="reveal">Selected <em>works</em>.</h2>
+      <div class="meta reveal delay-1">Nine projects<br/>2021 — 2026</div>
+    </div>
+
+    <div class="index-list reveal">
+      <a class="index-row" href="#w01">
+        <div class="index-num">I</div>
+        <div class="index-title">Vehicle Underbody <em>Speed-Bump</em> Envelope</div>
+        <div class="index-org">Mercedes-Benz R&amp;D India · CAE</div>
+        <div class="index-year">2023</div>
+        <div class="arrow">→</div>
+      </a>
+      <a class="index-row" href="#w02">
+        <div class="index-num">II</div>
+        <div class="index-title">Halbach-Cylinder <em>Magnetic Wheels</em></div>
+        <div class="index-org">Larsen &amp; Toubro · R&amp;D</div>
+        <div class="index-year">2023</div>
+        <div class="arrow">→</div>
+      </a>
+      <a class="index-row" href="#w03">
+        <div class="index-num">III</div>
+        <div class="index-title">Orthopedic Boot <em>Thermal</em> Biomechanics</div>
+        <div class="index-org">BITS Pilani · Published ASME</div>
+        <div class="index-year">2022–25</div>
+        <div class="arrow">→</div>
+      </a>
+      <a class="index-row" href="#w04">
+        <div class="index-num">IV</div>
+        <div class="index-title">SAE BAJA India — <em>Braking System</em> FEA</div>
+        <div class="index-org">Team Greasemonkeys</div>
+        <div class="index-year">2021–22</div>
+        <div class="arrow">→</div>
+      </a>
+      <a class="index-row" href="#w05">
+        <div class="index-num">V</div>
+        <div class="index-title">Model-Free <em>Longitudinal</em> Speed Controller</div>
+        <div class="index-org">UT Dallas · Graduate</div>
+        <div class="index-year">2025</div>
+        <div class="arrow">→</div>
+      </a>
+      <a class="index-row" href="#w06">
+        <div class="index-num">VI</div>
+        <div class="index-title">Resilient Vector <em>Consensus</em> for Multi-Agent Systems</div>
+        <div class="index-org">CIRENs Lab · M.S. Thesis</div>
+        <div class="index-year">Ongoing</div>
+        <div class="arrow">→</div>
+      </a>
+      <a class="index-row" href="#w07">
+        <div class="index-num">VII</div>
+        <div class="index-title">Multi-Compartment <em>Mechanical</em> Blender</div>
+        <div class="index-org">DE G531 · Product Design</div>
+        <div class="index-year">2023</div>
+        <div class="arrow">→</div>
+      </a>
+      <a class="index-row" href="#w08">
+        <div class="index-num">VIII</div>
+        <div class="index-title">Pot-Type <em>Bridge Bearing</em> — Contact FEA</div>
+        <div class="index-org">UT Dallas · Graduate</div>
+        <div class="index-year">2025</div>
+        <div class="arrow">→</div>
+      </a>
+      <a class="index-row" href="#tooling">
+        <div class="index-num">IX</div>
+        <div class="index-title">Tooling, Methods &amp; <em>Software</em> Proficiency</div>
+        <div class="index-org">Appendix · Skills Matrix</div>
+        <div class="index-year">—</div>
+        <div class="arrow">→</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     PROJECT I — MERCEDES-BENZ
+     ═══════════════════════════════════════════════════ -->
+<article id="w01" class="work">
+  <div class="container">
+    <header class="work-head">
+      <div class="work-num reveal"><span>§ Project I · Industry R&amp;D</span>01</div>
+      <div class="reveal delay-1">
+        <h3 class="work-title">Vehicle Underbody <em>Speed-Bump</em> Envelope.</h3>
+        <div class="work-meta">
+          <span><strong>Client</strong>Mercedes-Benz R&amp;D India</span>
+          <span><strong>Role</strong>CAE Intern</span>
+          <span><strong>Location</strong>Bangalore</span>
+          <span><strong>Period</strong>May — Jul 2023</span>
+        </div>
+      </div>
+    </header>
+
+    <div class="work-body">
+      <aside class="work-sidebar reveal">
+        <div class="block">
+          <div class="label">Role</div>
+          Independent CAE study under the Vehicle Validation group, owning the tool pipeline end-to-end.
+        </div>
+        <div class="block">
+          <div class="label">Tooling</div>
+          Simpack (multibody), MATLAB, OpenCRG (road profiles), IRC 99 standards.
+        </div>
+        <div class="block">
+          <div class="label">Deliverables</div>
+          Dimensional limit envelope · automated pipeline · reusable framework.
+        </div>
+      </aside>
+
+      <div class="work-main">
+        <p class="work-lead reveal">Defining a dimensional limit envelope for speed bumps that the entire passenger-car underbody can clear without contact — across <em>three critical zones</em> and a batch of IRC-standard profiles.</p>
+
+        <div class="work-section reveal">
+          <div class="work-section-h"><span>Problem</span><span>01</span></div>
+          <p class="work-p">Speed bumps in India vary wildly from the IRC 99 standard; a vehicle's underbody, bumpers and belly are vulnerable in ways the nominal bump geometry doesn't capture. The task: establish a <strong>single envelope</strong> that validation teams can use as a pass/fail check <em>early in the design cycle</em>, before hardware exists.</p>
+        </div>
+
+        <div class="work-section reveal">
+          <div class="work-section-h"><span>Approach</span><span>02</span></div>
+          <ul class="work-list">
+            <li>Decomposed the underbody into three zones — <strong>front overhang</strong> (bumper to front axle), <strong>belly</strong> (between axles), <strong>rear overhang</strong> (rear axle to bumper) — each with independent geometric failure modes.</li>
+            <li>Built a Simpack multibody model of the car traversing parametrised IRC bumps; swept bump height, length and approach/departure angles in batch runs.</li>
+            <li>Generated the <em>Grenzfläche</em> (limit-surface) plot for each zone in MATLAB, then intersected the three surfaces into a unified envelope.</li>
+          </ul>
+        </div>
+
+        <!-- Custom SVG figure: vehicle decomposition -->
+        <div class="figure-row c2 reveal">
+          <figure class="figure svg-fig">
+            <div class="figure-slot">
+              <svg viewBox="0 0 520 300" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <linearGradient id="carBody" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0" stop-color="#c8371d"/>
+                    <stop offset="1" stop-color="#8f2713"/>
+                  </linearGradient>
+                </defs>
+                <!-- ground -->
+                <line x1="30" y1="220" x2="490" y2="220" stroke="#c9bfad" stroke-dasharray="2 4"/>
+                <!-- car silhouette -->
+                <path d="M 70 180 L 90 140 Q 120 115 170 110 L 310 110 Q 360 115 400 140 L 440 175 L 455 180 L 455 210 L 70 210 Z"
+                      fill="url(#carBody)" opacity="0.9"/>
+                <!-- windows -->
+                <path d="M 150 135 L 200 120 L 310 120 L 360 135 L 350 155 L 170 155 Z" fill="#1a1815" opacity="0.7"/>
+                <!-- wheels -->
+                <circle cx="135" cy="215" r="22" fill="#1a1815"/>
+                <circle cx="135" cy="215" r="14" fill="#2c2925"/>
+                <circle cx="135" cy="215" r="6" fill="#5a5550"/>
+                <circle cx="390" cy="215" r="22" fill="#1a1815"/>
+                <circle cx="390" cy="215" r="14" fill="#2c2925"/>
+                <circle cx="390" cy="215" r="6" fill="#5a5550"/>
+                <!-- zones with dashed brackets -->
+                <g font-family="JetBrains Mono" font-size="9" fill="#1a1815" letter-spacing="1">
+                  <line x1="70" y1="245" x2="135" y2="245" stroke="#c8371d" stroke-width="1.5"/>
+                  <text x="75" y="262" fill="#c8371d" font-weight="600">FRONT</text>
+                  <line x1="135" y1="245" x2="390" y2="245" stroke="#1a1815" stroke-width="1.5"/>
+                  <text x="235" y="262" font-weight="600">BELLY</text>
+                  <line x1="390" y1="245" x2="455" y2="245" stroke="#c8371d" stroke-width="1.5"/>
+                  <text x="395" y="262" fill="#c8371d" font-weight="600">REAR</text>
+                </g>
+                <!-- markers -->
+                <circle cx="135" cy="245" r="2.5" fill="#1a1815"/>
+                <circle cx="390" cy="245" r="2.5" fill="#1a1815"/>
+                <!-- underbody profile sketch -->
+                <path d="M 70 195 L 110 200 L 135 215 L 180 200 L 250 195 L 340 200 L 390 215 L 420 205 L 455 195" 
+                      stroke="#c8371d" stroke-width="1.2" fill="none" stroke-dasharray="3 2"/>
+                <!-- annotations -->
+                <text x="30" y="40" font-family="JetBrains Mono" font-size="9" fill="#5a5550" letter-spacing="1">VEHICLE DECOMPOSITION</text>
+                <line x1="30" y1="50" x2="490" y2="50" stroke="#c9bfad"/>
+              </svg>
+            </div>
+            <figcaption class="figure-caption"><span class="fignum">Fig 1.1</span>Vehicle underbody decomposed into front, middle and rear zones with the underbody longitudinal profile overlaid.</figcaption>
+          </figure>
+
+          <figure class="figure svg-fig">
+            <div class="figure-slot">
+              <svg viewBox="0 0 520 300" xmlns="http://www.w3.org/2000/svg">
+                <!-- axes -->
+                <text x="30" y="40" font-family="JetBrains Mono" font-size="9" fill="#5a5550" letter-spacing="1">GRENZFLÄCHE — LIMIT SURFACE</text>
+                <line x1="30" y1="50" x2="490" y2="50" stroke="#c9bfad"/>
+                <line x1="70" y1="80" x2="70" y2="240" stroke="#1a1815" stroke-width="1.2"/>
+                <line x1="70" y1="240" x2="470" y2="240" stroke="#1a1815" stroke-width="1.2"/>
+                <!-- grid -->
+                <g stroke="#c9bfad" stroke-width="0.5" opacity="0.6">
+                  <line x1="70" y1="100" x2="470" y2="100"/>
+                  <line x1="70" y1="140" x2="470" y2="140"/>
+                  <line x1="70" y1="180" x2="470" y2="180"/>
+                  <line x1="70" y1="220" x2="470" y2="220"/>
+                  <line x1="150" y1="80" x2="150" y2="240"/>
+                  <line x1="230" y1="80" x2="230" y2="240"/>
+                  <line x1="310" y1="80" x2="310" y2="240"/>
+                  <line x1="390" y1="80" x2="390" y2="240"/>
+                </g>
+                <!-- curves -->
+                <path d="M 80 220 Q 160 130 260 105 Q 360 100 460 115" stroke="#c8371d" stroke-width="2" fill="none"/>
+                <path d="M 80 230 Q 160 160 260 140 Q 360 135 460 150" stroke="#8f2713" stroke-width="1.5" fill="none" opacity="0.8"/>
+                <path d="M 80 235 Q 160 190 260 175 Q 360 170 460 185" stroke="#1e3a5f" stroke-width="1.5" fill="none" opacity="0.8"/>
+                <path d="M 80 238 Q 160 215 260 205 Q 360 200 460 210" stroke="#b8873a" stroke-width="1.5" fill="none" opacity="0.8"/>
+                <!-- axis labels -->
+                <text x="270" y="260" font-family="JetBrains Mono" font-size="10" fill="#1a1815" text-anchor="middle">CHORD LENGTH (m)</text>
+                <text x="50" y="160" font-family="JetBrains Mono" font-size="10" fill="#1a1815" transform="rotate(-90 50 160)" text-anchor="middle">HEIGHT (m)</text>
+                <!-- legend -->
+                <g font-family="JetBrains Mono" font-size="8" fill="#1a1815">
+                  <rect x="380" y="80" width="80" height="40" fill="#f2ede3" stroke="#c9bfad"/>
+                  <line x1="388" y1="90" x2="400" y2="90" stroke="#c8371d" stroke-width="2"/>
+                  <text x="405" y="93">FRONT</text>
+                  <line x1="388" y1="100" x2="400" y2="100" stroke="#8f2713" stroke-width="1.5"/>
+                  <text x="405" y="103">BELLY</text>
+                  <line x1="388" y1="110" x2="400" y2="110" stroke="#1e3a5f" stroke-width="1.5"/>
+                  <text x="405" y="113">REAR</text>
+                </g>
+              </svg>
+            </div>
+            <figcaption class="figure-caption"><span class="fignum">Fig 1.2</span>Grenzfläche limit surface plotted against the car underbody — per-zone clearance curves intersected into a single envelope.</figcaption>
+          </figure>
+        </div>
+
+        <!-- metric deliverables -->
+        <div class="metric-grid reveal">
+          <div class="metric">
+            <div class="metric-value">3 <span class="unit">carlines</span></div>
+            <div class="metric-label">Validated across vehicle platforms, three load cases</div>
+          </div>
+          <div class="metric">
+            <div class="metric-value">10–20<span class="unit">km/h</span></div>
+            <div class="metric-label">Traversal speed range swept in batch simulation</div>
+          </div>
+          <div class="metric">
+            <div class="metric-value"><em>0</em> <span class="unit">prototypes</span></div>
+            <div class="metric-label">Pipeline replaced physical prototype testing for this stage</div>
+          </div>
+        </div>
+
+        <div class="work-section reveal">
+          <div class="work-section-h"><span>Deliverable</span><span>03</span></div>
+          <ul class="work-list">
+            <li>Delivered a fully validated <strong>dimensional limit envelope</strong> for speed bumps across 3 vehicle carlines, 3 load cases, and speeds of 10–20 km/h — broken down by front, middle, rear, and full-underbody contact zones.</li>
+            <li>The automated simulation pipeline <strong>replaced the need for physical prototype testing</strong>, cutting validation time and cost significantly.</li>
+            <li>Methodology was adopted as a <em>reusable framework</em> for future vehicle ground-clearance validation at MBRDI.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
+
+<!-- ═══════════════════════════════════════════════════
+     PROJECT II — L&T MAGNETIC WHEELS
+     ═══════════════════════════════════════════════════ -->
+<article id="w02" class="work">
+  <div class="container">
+    <header class="work-head">
+      <div class="work-num reveal"><span>§ Project II · Industry R&amp;D</span>02</div>
+      <div class="reveal delay-1">
+        <h3 class="work-title">Halbach-Cylinder <em>Magnetic Wheels</em> — Design, Testing &amp; Catalogue.</h3>
+        <div class="work-meta">
+          <span><strong>Client</strong>L&amp;T Heavy Engineering</span>
+          <span><strong>Role</strong>R&amp;D Intern</span>
+          <span><strong>Location</strong>Mumbai</span>
+          <span><strong>Period</strong>2023</span>
+        </div>
+      </div>
+    </header>
+
+    <div class="work-body">
+      <aside class="work-sidebar reveal">
+        <div class="block">
+          <div class="label">Role</div>
+          Design lead across the full lifecycle — magnetic-wheel module, shaft family, characterisation rig, and the final selection catalogue.
+        </div>
+        <div class="block">
+          <div class="label">Tooling</div>
+          Siemens NX, SolidWorks, FDM 3D printing, custom magnetic-force calculator, in-house test rig.
+        </div>
+        <div class="block">
+          <div class="label">Output</div>
+          Two-catalogue wheel-selection system · 5–110 kg payload range · reusable test rig.
+        </div>
+      </aside>
+
+      <div class="work-main">
+        <p class="work-lead reveal">Converting a theoretical Halbach-cylinder magnetisation pattern into a <em>buildable, testable, and catalogued</em> wheel family for adhesion-locomotive robots — from CAD through hardware to a reusable sizing chart.</p>
+
+        <div class="work-section reveal">
+          <div class="work-section-h"><span>Why Halbach</span><span>01</span></div>
+          <p class="work-p">A Halbach cylinder concentrates magnetic flux on one side of the array and nearly cancels it on the other — ideal for a wheel that has to grip a ferromagnetic surface <em>without leaking field</em> into the chassis or instrumentation above it. Two pole configurations were carried forward for comparison: <strong>quadro-polar</strong> and <strong>hexa-polar</strong>.</p>
+        </div>
+
+        <!-- Halbach figure -->
+        <div class="figure-row c2 reveal">
+          <figure class="figure svg-fig">
+            <div class="figure-slot">
+              <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+                <text x="20" y="30" font-family="JetBrains Mono" font-size="9" fill="#5a5550" letter-spacing="1">QUADRO-POLAR ARRAY</text>
+                <line x1="20" y1="40" x2="380" y2="40" stroke="#c9bfad"/>
+                <g transform="translate(200 165)">
+                  <!-- outer ring -->
+                  <circle r="105" fill="none" stroke="#1a1815" stroke-width="1.2"/>
+                  <circle r="50" fill="none" stroke="#1a1815" stroke-width="1.2"/>
+                  <!-- magnets arranged quadro-polar (8 segments, poles) -->
+                  <g>
+                    <!-- create 8 rectangles around circle -->
+                    <g transform="rotate(0)"><rect x="-15" y="-95" width="30" height="35" fill="#c8371d" stroke="#1a1815"/></g>
+                    <g transform="rotate(45)"><rect x="-15" y="-95" width="30" height="35" fill="#1e3a5f" stroke="#1a1815"/></g>
+                    <g transform="rotate(90)"><rect x="-15" y="-95" width="30" height="35" fill="#c8371d" stroke="#1a1815"/></g>
+                    <g transform="rotate(135)"><rect x="-15" y="-95" width="30" height="35" fill="#1e3a5f" stroke="#1a1815"/></g>
+                    <g transform="rotate(180)"><rect x="-15" y="-95" width="30" height="35" fill="#c8371d" stroke="#1a1815"/></g>
+                    <g transform="rotate(225)"><rect x="-15" y="-95" width="30" height="35" fill="#1e3a5f" stroke="#1a1815"/></g>
+                    <g transform="rotate(270)"><rect x="-15" y="-95" width="30" height="35" fill="#c8371d" stroke="#1a1815"/></g>
+                    <g transform="rotate(315)"><rect x="-15" y="-95" width="30" height="35" fill="#1e3a5f" stroke="#1a1815"/></g>
+                  </g>
+                  <!-- center axis marker -->
+                  <line x1="-60" y1="0" x2="60" y2="0" stroke="#1a1815" stroke-width="0.5"/>
+                  <line x1="0" y1="-60" x2="0" y2="60" stroke="#1a1815" stroke-width="0.5"/>
+                  <circle r="3" fill="#c8371d"/>
+                </g>
+                <text x="200" y="285" font-family="JetBrains Mono" font-size="9" fill="#5a5550" text-anchor="middle">8 SEGMENTS · ALT N/S</text>
+              </svg>
+            </div>
+            <figcaption class="figure-caption"><span class="fignum">Fig 2.1</span>Quadro-polar Halbach cylinder — 8 alternating magnetic segments.</figcaption>
+          </figure>
+
+          <figure class="figure svg-fig">
+            <div class="figure-slot">
+              <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+                <text x="20" y="30" font-family="JetBrains Mono" font-size="9" fill="#5a5550" letter-spacing="1">HEXA-POLAR ARRAY</text>
+                <line x1="20" y1="40" x2="380" y2="40" stroke="#c9bfad"/>
+                <g transform="translate(200 165)">
+                  <circle r="105" fill="none" stroke="#1a1815" stroke-width="1.2"/>
+                  <circle r="50" fill="none" stroke="#1a1815" stroke-width="1.2"/>
+                  <g>
+                    <!-- 12 segments -->
+                    <g transform="rotate(0)"><rect x="-12" y="-95" width="24" height="35" fill="#c8371d" stroke="#1a1815"/></g>
+                    <g transform="rotate(30)"><rect x="-12" y="-95" width="24" height="35" fill="#1e3a5f" stroke="#1a1815"/></g>
+                    <g transform="rotate(60)"><rect x="-12" y="-95" width="24" height="35" fill="#c8371d" stroke="#1a1815"/></g>
+                    <g transform="rotate(90)"><rect x="-12" y="-95" width="24" height="35" fill="#1e3a5f" stroke="#1a1815"/></g>
+                    <g transform="rotate(120)"><rect x="-12" y="-95" width="24" height="35" fill="#c8371d" stroke="#1a1815"/></g>
+                    <g transform="rotate(150)"><rect x="-12" y="-95" width="24" height="35" fill="#1e3a5f" stroke="#1a1815"/></g>
+                    <g transform="rotate(180)"><rect x="-12" y="-95" width="24" height="35" fill="#c8371d" stroke="#1a1815"/></g>
+                    <g transform="rotate(210)"><rect x="-12" y="-95" width="24" height="35" fill="#1e3a5f" stroke="#1a1815"/></g>
+                    <g transform="rotate(240)"><rect x="-12" y="-95" width="24" height="35" fill="#c8371d" stroke="#1a1815"/></g>
+                    <g transform="rotate(270)"><rect x="-12" y="-95" width="24" height="35" fill="#1e3a5f" stroke="#1a1815"/></g>
+                    <g transform="rotate(300)"><rect x="-12" y="-95" width="24" height="35" fill="#c8371d" stroke="#1a1815"/></g>
+                    <g transform="rotate(330)"><rect x="-12" y="-95" width="24" height="35" fill="#1e3a5f" stroke="#1a1815"/></g>
+                  </g>
+                  <line x1="-60" y1="0" x2="60" y2="0" stroke="#1a1815" stroke-width="0.5"/>
+                  <line x1="0" y1="-60" x2="0" y2="60" stroke="#1a1815" stroke-width="0.5"/>
+                  <circle r="3" fill="#c8371d"/>
+                </g>
+                <text x="200" y="285" font-family="JetBrains Mono" font-size="9" fill="#5a5550" text-anchor="middle">12 SEGMENTS · ALT N/S</text>
+              </svg>
+            </div>
+            <figcaption class="figure-caption"><span class="fignum">Fig 2.2</span>Hexa-polar arrangement — pole count trades grip uniformity against fabrication tolerance.</figcaption>
+          </figure>
+        </div>
+
+        <div class="work-section reveal">
+          <div class="work-section-h"><span>From CAD to Hardware</span><span>02</span></div>
+          <p class="work-p">Fabricated as prototypes using <strong>in-house FDM 3D printing</strong> with commercially available square-block magnets — replacing outsourced custom-magnet manufacturing and collapsing the unit cost. Dimensional inspection and pull-force checks were done in-house before moving to dynamic testing.</p>
+        </div>
+
+        <div class="work-section reveal">
+          <div class="work-section-h"><span>Test Rig &amp; Shaft Family</span><span>03</span></div>
+          <p class="work-p">The existing test rig was built around a single wheel diameter and hub pattern. Designed a family of <strong>custom adapter shafts</strong> so one rig, sensor set and calibration carried across the whole wheel matrix — turning a one-off setup into a <em>reusable test platform</em>.</p>
+        </div>
+
+        <!-- Catalogue table -->
+        <div class="work-section reveal">
+          <div class="work-section-h"><span>Catalogue — Wheel Sizing Chart</span><span>04</span></div>
+          <p class="work-p">With the rig stabilised across wheel variants, ran the full characterisation matrix and compiled a wheel-dimension-versus-payload-capacity catalogue — a sizing chart downstream designers can specify from.</p>
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Wheel Width (mm)</th>
+                <th>Wheel Dia. (mm)</th>
+                <th>Magnet L. (mm)</th>
+                <th>Halbach ID (mm)</th>
+                <th>Halbach OD (mm)</th>
+                <th>Payload (kg)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td class="num">10</td><td class="num">35</td><td class="num">5</td><td class="num">23</td><td class="num">33</td><td class="num">3</td></tr>
+              <tr><td class="num">20</td><td class="num">70</td><td class="num">10</td><td class="num">45</td><td class="num">66</td><td class="num">14</td></tr>
+              <tr><td class="num">30</td><td class="num">105</td><td class="num">15</td><td class="num">68</td><td class="num">100</td><td class="num">30</td></tr>
+              <tr><td class="num">40</td><td class="num">140</td><td class="num">20</td><td class="num">91</td><td class="num">133</td><td class="num">54</td></tr>
+              <tr><td class="num">56</td><td class="num">196</td><td class="num">28</td><td class="num">127</td><td class="num">186</td><td class="num">106</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="metric-grid reveal">
+          <div class="metric">
+            <div class="metric-value">+35<span class="unit">%</span></div>
+            <div class="metric-label">Increase in adhesion strength vs. prior design</div>
+          </div>
+          <div class="metric">
+            <div class="metric-value">−20<span class="unit">%</span></div>
+            <div class="metric-label">Magnet weight reduction within same wheel envelope</div>
+          </div>
+          <div class="metric">
+            <div class="metric-value"><em>−75</em><span class="unit">%</span></div>
+            <div class="metric-label">Production cost reduction via in-house FDM fabrication</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
+
+<!-- ═══════════════════════════════════════════════════
+     PROJECT III — ORTHOPEDIC BOOT
+     ═══════════════════════════════════════════════════ -->
+<article id="w03" class="work">
+  <div class="container">
+    <header class="work-head">
+      <div class="work-num reveal"><span>§ Project III · Research</span>03</div>
+      <div class="reveal delay-1">
+        <h3 class="work-title">Orthopedic Boot <em>Thermal</em> Biomechanics.</h3>
+        <div class="work-meta">
+          <span><strong>Lab</strong>Orthopedic Biomechanics · BITS Pilani</span>
+          <span><strong>Role</strong>Research Assistant</span>
+          <span><strong>Period</strong>Nov 2022 — Jan 2025</span>
+          <span><strong>Published</strong>ASME J. Thermal Science</span>
+        </div>
+      </div>
+    </header>
+
+    <div class="work-body">
+      <aside class="work-sidebar reveal">
+        <div class="block">
+          <div class="label">Role</div>
+          Research Assistant — instrumentation, participant testing, FEA validation, technical writing.
+        </div>
+        <div class="block">
+          <div class="label">Tooling</div>
+          Arduino, custom PCB with 12-thermistor array, Bluetooth logger, COMSOL Multiphysics, MATLAB.
+        </div>
+        <div class="block">
+          <div class="label">Recognition</div>
+          Director's Travel Grant ($1,500) · APOSM 2024 · IAAT 2024.
+        </div>
+      </aside>
+
+      <div class="work-main">
+        <p class="work-lead reveal">Measuring — and then simulating — the thermal field inside an orthopedic walking boot, so that design changes to ventilation and padding can be evaluated <em>before clinical testing</em>.</p>
+
+        <div class="work-section reveal">
+          <div class="work-section-h"><span>Experimental Setup</span><span>01</span></div>
+          <p class="work-p">Built a custom instrumentation stack: an Arduino-based logger reading <strong>twelve thermistors</strong> laid out anatomically (anterior and posterior, shin and calf), routed through a custom PCB and strapped beneath the boot. Readings were Bluetooth-logged and synchronised with activity state during the protocol.</p>
+        </div>
+
+        <!-- sensor map SVG -->
+        <div class="figure-row c2 reveal">
+          <figure class="figure svg-fig">
+            <div class="figure-slot">
+              <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+                <text x="20" y="28" font-family="JetBrains Mono" font-size="9" fill="#5a5550" letter-spacing="1">SENSOR MAP — ANTERIOR / POSTERIOR</text>
+                <line x1="20" y1="38" x2="380" y2="38" stroke="#c9bfad"/>
+                <!-- anterior leg -->
+                <g transform="translate(130 170)">
+                  <text y="-95" font-family="JetBrains Mono" font-size="9" fill="#1a1815" text-anchor="middle">ANTERIOR</text>
+                  <path d="M -20 -80 Q -24 -40 -22 0 L -22 80 L 22 80 L 22 0 Q 24 -40 20 -80 Q 0 -88 -20 -80 Z" 
+                        fill="none" stroke="#1a1815" stroke-width="1.2"/>
+                  <!-- thermistors -->
+                  <g fill="#c8371d">
+                    <circle cx="-10" cy="-50" r="4"/><text x="-20" y="-47" font-family="JetBrains Mono" font-size="8" fill="#1a1815" text-anchor="end">T1</text>
+                    <circle cx="10" cy="-50" r="4"/><text x="20" y="-47" font-family="JetBrains Mono" font-size="8" fill="#1a1815">T11</text>
+                    <circle cx="-10" cy="-10" r="4"/><text x="-20" y="-7" font-family="JetBrains Mono" font-size="8" fill="#1a1815" text-anchor="end">T3</text>
+                    <circle cx="10" cy="-10" r="4"/><text x="20" y="-7" font-family="JetBrains Mono" font-size="8" fill="#1a1815">T9</text>
+                    <circle cx="-10" cy="40" r="4"/><text x="-20" y="43" font-family="JetBrains Mono" font-size="8" fill="#1a1815" text-anchor="end">T5</text>
+                    <circle cx="10" cy="40" r="4"/><text x="20" y="43" font-family="JetBrains Mono" font-size="8" fill="#1a1815">T7</text>
+                  </g>
+                </g>
+                <!-- posterior leg -->
+                <g transform="translate(270 170)">
+                  <text y="-95" font-family="JetBrains Mono" font-size="9" fill="#1a1815" text-anchor="middle">POSTERIOR</text>
+                  <path d="M -20 -80 Q -24 -40 -22 0 L -22 80 L 22 80 L 22 0 Q 24 -40 20 -80 Q 0 -88 -20 -80 Z" 
+                        fill="none" stroke="#1a1815" stroke-width="1.2"/>
+                  <g fill="#1e3a5f">
+                    <circle cx="-10" cy="-50" r="4"/><text x="-20" y="-47" font-family="JetBrains Mono" font-size="8" fill="#1a1815" text-anchor="end">T12</text>
+                    <circle cx="10" cy="-50" r="4"/><text x="20" y="-47" font-family="JetBrains Mono" font-size="8" fill="#1a1815">T2</text>
+                    <circle cx="-10" cy="-10" r="4"/><text x="-20" y="-7" font-family="JetBrains Mono" font-size="8" fill="#1a1815" text-anchor="end">T10</text>
+                    <circle cx="10" cy="-10" r="4"/><text x="20" y="-7" font-family="JetBrains Mono" font-size="8" fill="#1a1815">T4</text>
+                    <circle cx="-10" cy="40" r="4"/><text x="-20" y="43" font-family="JetBrains Mono" font-size="8" fill="#1a1815" text-anchor="end">T8</text>
+                    <circle cx="10" cy="40" r="4"/><text x="20" y="43" font-family="JetBrains Mono" font-size="8" fill="#1a1815">T6</text>
+                  </g>
+                </g>
+              </svg>
+            </div>
+            <figcaption class="figure-caption"><span class="fignum">Fig 3.1</span>Anatomical sensor map — 12 thermistors across anterior and posterior surfaces of the shin and calf.</figcaption>
+          </figure>
+
+          <figure class="figure svg-fig">
+            <div class="figure-slot">
+              <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+                <text x="20" y="28" font-family="JetBrains Mono" font-size="9" fill="#5a5550" letter-spacing="1">FEA VS EXPERIMENT — TEMPERATURE RISE</text>
+                <line x1="20" y1="38" x2="380" y2="38" stroke="#c9bfad"/>
+                <!-- axes -->
+                <line x1="60" y1="70" x2="60" y2="240" stroke="#1a1815"/>
+                <line x1="60" y1="240" x2="370" y2="240" stroke="#1a1815"/>
+                <!-- grid -->
+                <g stroke="#c9bfad" stroke-width="0.5" opacity="0.6">
+                  <line x1="60" y1="100" x2="370" y2="100"/>
+                  <line x1="60" y1="140" x2="370" y2="140"/>
+                  <line x1="60" y1="180" x2="370" y2="180"/>
+                  <line x1="60" y1="220" x2="370" y2="220"/>
+                </g>
+                <!-- labels -->
+                <g font-family="JetBrains Mono" font-size="8" fill="#5a5550">
+                  <text x="55" y="103" text-anchor="end">3.0</text>
+                  <text x="55" y="143" text-anchor="end">2.5</text>
+                  <text x="55" y="183" text-anchor="end">1.5</text>
+                  <text x="55" y="223" text-anchor="end">0.5</text>
+                </g>
+                <!-- bars: anterior and posterior -->
+                <g>
+                  <!-- FEA anterior 2.2 -->
+                  <rect x="100" y="152" width="40" height="88" fill="#c8371d"/>
+                  <!-- Exp anterior 2.3 -->
+                  <rect x="145" y="148" width="40" height="92" fill="#8f2713"/>
+                  <!-- FEA post 2.4 -->
+                  <rect x="230" y="144" width="40" height="96" fill="#1e3a5f"/>
+                  <!-- Exp post 2.5 -->
+                  <rect x="275" y="140" width="40" height="100" fill="#0f1e30"/>
+                </g>
+                <g font-family="JetBrains Mono" font-size="9" fill="#1a1815" text-anchor="middle">
+                  <text x="120" y="150" fill="#fff">2.2</text>
+                  <text x="165" y="146" fill="#fff">2.3</text>
+                  <text x="250" y="142" fill="#fff">2.4</text>
+                  <text x="295" y="138" fill="#fff">2.5</text>
+                </g>
+                <g font-family="JetBrains Mono" font-size="8" fill="#1a1815" text-anchor="middle">
+                  <text x="142" y="258">ANTERIOR</text>
+                  <text x="272" y="258">POSTERIOR</text>
+                  <text x="120" y="272" fill="#c8371d">FEA</text>
+                  <text x="165" y="272" fill="#8f2713">EXP</text>
+                  <text x="250" y="272" fill="#1e3a5f">FEA</text>
+                  <text x="295" y="272" fill="#0f1e30">EXP</text>
+                </g>
+                <text x="30" y="155" font-family="JetBrains Mono" font-size="9" fill="#1a1815" transform="rotate(-90 30 155)" text-anchor="middle">ΔT (°C)</text>
+              </svg>
+            </div>
+            <figcaption class="figure-caption"><span class="fignum">Fig 3.2</span>FEA vs. experimental temperature rise — close agreement (RMSE 0.11) validates COMSOL model for downstream design use.</figcaption>
+          </figure>
+        </div>
+
+        <div class="work-section reveal">
+          <div class="work-section-h"><span>Numerical Validation</span><span>02</span></div>
+          <p class="work-p">Built a COMSOL Multiphysics <strong>conjugate-heat-transfer model</strong> of the boot–leg assembly, using the instrumented data as a boundary condition and for validation of the simulated temperature field. The agreement between measured and simulated trends was the key milestone for using the model as a <em>design tool</em>.</p>
+        </div>
+
+        <div class="metric-grid reveal">
+          <div class="metric">
+            <div class="metric-value">2.2 / 2.3<span class="unit">°C</span></div>
+            <div class="metric-label">Anterior temperature rise — FEA vs experiment</div>
+          </div>
+          <div class="metric">
+            <div class="metric-value">0.11<span class="unit">RMSE</span></div>
+            <div class="metric-label">Between simulated and measured temperature fields</div>
+          </div>
+          <div class="metric">
+            <div class="metric-value"><em>p</em> = 0.022</div>
+            <div class="metric-label">Statistical significance of posterior-rise effect</div>
+          </div>
+        </div>
+
+        <div class="pub reveal">
+          <div class="label">Publication</div>
+          <div class="pub-title">Experimental and Finite Element Investigations to Study Temperature Distribution at the Orthotic Boot–Skin Interface</div>
+          <div class="pub-cite">Pachpande, N., Ambalgi, P., &amp; Bapat, G. M. <strong>ASME Journal of Thermal Science and Engineering Applications</strong>, Apr. 2025. <br/>doi: 10.1115/1.4068365</div>
+          <div class="pub-venues">Presented at APOSM 2024 · Malaysia &nbsp;·&nbsp; IAAT 2024 · India</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
+
+<!-- ═══════════════════════════════════════════════════
+     PROJECT IV — SAE BAJA BRAKES
+     ═══════════════════════════════════════════════════ -->
+<article id="w04" class="work">
+  <div class="container">
+    <header class="work-head">
+      <div class="work-num reveal"><span>§ Project IV · Competition</span>04</div>
+      <div class="reveal delay-1">
+        <h3 class="work-title">SAE BAJA India — <em>Braking System</em> Design &amp; FEA.</h3>
+        <div class="work-meta">
+          <span><strong>Team</strong>Greasemonkeys</span>
+          <span><strong>Sub-Team</strong>Brakes</span>
+          <span><strong>Period</strong>2021 — 2022</span>
+          <span><strong>Event</strong>SAE BAJA India 2022</span>
+        </div>
+      </div>
+    </header>
+
+    <div class="work-body">
+      <aside class="work-sidebar reveal">
+        <div class="block">
+          <div class="label">Role</div>
+          Design &amp; FEA lead for the front brake rotor and pedal assembly — hand calculations, simulation and mass optimisation.
+        </div>
+        <div class="block">
+          <div class="label">Tooling</div>
+          SolidWorks, ANSYS Mechanical (Static Structural &amp; Transient Thermal).
+        </div>
+        <div class="block">
+          <div class="label">Beyond Brakes</div>
+          Collaborated on roll cage, suspension uprights, wheel hub, and drivetrain design.
+        </div>
+      </aside>
+
+      <div class="work-main">
+        <p class="work-lead reveal">Designing, hand-calculating, and FEA-validating a competition-car braking system — <em>rotor, pedal</em> and the stopping distance they have to deliver together.</p>
+
+        <div class="work-section reveal">
+          <div class="work-section-h"><span>Design &amp; Hand Calculations</span><span>01</span></div>
+          <ul class="work-list">
+            <li>Designed an <strong>X-split outboard</strong> braking system.</li>
+            <li>Brake force on rotor: <strong>4445 N</strong>, pad area <strong>1140 mm²</strong>, rotor pressure <strong>3.899 MPa</strong>.</li>
+            <li>Limiting <em>stopping distance of 4.5 m</em> at 40 km/h.</li>
+          </ul>
+        </div>
+
+        <div class="work-section reveal">
+          <div class="work-section-h"><span>Rotor — Structural &amp; Transient Thermal FEA</span><span>02</span></div>
+          <p class="work-p">Static structural FEA on the rotor in <strong>SS 410</strong>, 239,645 nodes, tetrahedral mesh. Heat flux <strong>13,042 W/m²</strong> with convection + radiation, simulating full-stop braking in 2.7 s.</p>
+
+          <table class="data-table">
+            <thead>
+              <tr><th>Parameter</th><th>Unoptimised</th><th>Optimised</th><th>Δ</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Deformation (mm)</td><td class="num">0.00115</td><td class="num">0.000824</td><td class="num delta-good">−28%</td></tr>
+              <tr><td>Von Mises Stress (MPa)</td><td class="num">6.652</td><td class="num">5.986</td><td class="num delta-good">−10%</td></tr>
+              <tr><td>Peak Temperature (°C)</td><td class="num">82.69</td><td class="num">76.88</td><td class="num delta-good">−7%</td></tr>
+              <tr><td>Peak Heat Flux (W/m²)</td><td class="num">616,770</td><td class="num">506,710</td><td class="num delta-good">−18%</td></tr>
+              <tr><td>Weight (g)</td><td class="num">1203.89</td><td class="num">1191.18</td><td class="num delta-good">−12.7 g</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="work-section reveal">
+          <div class="work-section-h"><span>Pedal — Al 6061-T6, Panic-Braking Load</span><span>03</span></div>
+          <p class="work-p">Analysed brake pedal under <strong>2000 N panic-braking load</strong>. Reduced weight from <em>226.7 → 213.6 g</em> while maintaining FOS &gt; 1.5.</p>
+
+          <table class="data-table">
+            <thead>
+              <tr><th>Parameter</th><th>Unoptimised</th><th>Optimised</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Deformation (mm)</td><td class="num">2.0525</td><td class="num">2.416</td></tr>
+              <tr><td>Von Mises Stress (MPa)</td><td class="num">1820.2</td><td class="num">1837.8</td></tr>
+              <tr><td>FOS (Structural)</td><td class="num">1.763</td><td class="num">1.508</td></tr>
+              <tr><td>Weight (g)</td><td class="num">226.74</td><td class="num delta-good">213.58</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- brake rotor stylized figure -->
+        <div class="figure-row c2 reveal">
+          <figure class="figure svg-fig">
+            <div class="figure-slot">
+              <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+                <text x="20" y="28" font-family="JetBrains Mono" font-size="9" fill="#5a5550" letter-spacing="1">BRAKE ROTOR — FEA MESH</text>
+                <line x1="20" y1="38" x2="380" y2="38" stroke="#c9bfad"/>
+                <g transform="translate(200 170)">
+                  <!-- outer rotor -->
+                  <circle r="110" fill="none" stroke="#1a1815" stroke-width="1.5"/>
+                  <circle r="95" fill="none" stroke="#1a1815" stroke-width="0.8" stroke-dasharray="2 2"/>
+                  <!-- vanes -->
+                  <g stroke="#c8371d" stroke-width="1.2" fill="none">
+                    <g><path d="M 0 -100 L 0 -70" transform="rotate(0)"/></g>
+                    <g><path d="M 0 -100 L 0 -70" transform="rotate(22.5)"/></g>
+                    <g><path d="M 0 -100 L 0 -70" transform="rotate(45)"/></g>
+                    <g><path d="M 0 -100 L 0 -70" transform="rotate(67.5)"/></g>
+                    <g><path d="M 0 -100 L 0 -70" transform="rotate(90)"/></g>
+                    <g><path d="M 0 -100 L 0 -70" transform="rotate(112.5)"/></g>
+                    <g><path d="M 0 -100 L 0 -70" transform="rotate(135)"/></g>
+                    <g><path d="M 0 -100 L 0 -70" transform="rotate(157.5)"/></g>
+                    <g><path d="M 0 -100 L 0 -70" transform="rotate(180)"/></g>
+                    <g><path d="M 0 -100 L 0 -70" transform="rotate(202.5)"/></g>
+                    <g><path d="M 0 -100 L 0 -70" transform="rotate(225)"/></g>
+                    <g><path d="M 0 -100 L 0 -70" transform="rotate(247.5)"/></g>
+                    <g><path d="M 0 -100 L 0 -70" transform="rotate(270)"/></g>
+                    <g><path d="M 0 -100 L 0 -70" transform="rotate(292.5)"/></g>
+                    <g><path d="M 0 -100 L 0 -70" transform="rotate(315)"/></g>
+                    <g><path d="M 0 -100 L 0 -70" transform="rotate(337.5)"/></g>
+                  </g>
+                  <!-- petal hub -->
+                  <path d="M 0 -50 Q 35 -35 50 0 Q 35 35 0 50 Q -35 35 -50 0 Q -35 -35 0 -50 Z" 
+                        fill="none" stroke="#1a1815" stroke-width="1.2"/>
+                  <circle r="18" fill="none" stroke="#1a1815" stroke-width="1.2"/>
+                  <circle r="5" fill="#c8371d"/>
+                  <!-- mesh texture -->
+                  <g stroke="#c9bfad" stroke-width="0.3" opacity="0.7">
+                    <circle r="75" fill="none"/>
+                    <circle r="85" fill="none"/>
+                  </g>
+                </g>
+                <text x="200" y="285" font-family="JetBrains Mono" font-size="9" fill="#5a5550" text-anchor="middle">SS 410 · 239,645 NODES · TET</text>
+              </svg>
+            </div>
+            <figcaption class="figure-caption"><span class="fignum">Fig 4.1</span>Brake rotor — ANSYS adaptive tetrahedral mesh, 239,645 nodes, SS 410.</figcaption>
+          </figure>
+          <figure class="figure svg-fig">
+            <div class="figure-slot">
+              <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+                <text x="20" y="28" font-family="JetBrains Mono" font-size="9" fill="#5a5550" letter-spacing="1">TRANSIENT THERMAL — PEAK TEMPERATURE</text>
+                <line x1="20" y1="38" x2="380" y2="38" stroke="#c9bfad"/>
+                <!-- axes -->
+                <line x1="60" y1="70" x2="60" y2="240" stroke="#1a1815"/>
+                <line x1="60" y1="240" x2="370" y2="240" stroke="#1a1815"/>
+                <g stroke="#c9bfad" stroke-width="0.5" opacity="0.6">
+                  <line x1="60" y1="100" x2="370" y2="100"/>
+                  <line x1="60" y1="140" x2="370" y2="140"/>
+                  <line x1="60" y1="180" x2="370" y2="180"/>
+                  <line x1="60" y1="220" x2="370" y2="220"/>
+                </g>
+                <g font-family="JetBrains Mono" font-size="8" fill="#5a5550">
+                  <text x="55" y="73" text-anchor="end">90</text>
+                  <text x="55" y="113" text-anchor="end">70</text>
+                  <text x="55" y="153" text-anchor="end">50</text>
+                  <text x="55" y="193" text-anchor="end">30</text>
+                  <text x="55" y="233" text-anchor="end">10</text>
+                </g>
+                <!-- curves -->
+                <path d="M 60 230 Q 120 200 180 130 Q 230 85 290 78 L 360 90" stroke="#c8371d" stroke-width="2.2" fill="none"/>
+                <path d="M 60 230 Q 120 210 180 155 Q 230 120 290 105 L 360 115" stroke="#1e3a5f" stroke-width="2" fill="none" stroke-dasharray="4 2"/>
+                <!-- markers -->
+                <circle cx="290" cy="78" r="4" fill="#c8371d"/>
+                <text x="298" y="75" font-family="JetBrains Mono" font-size="9" fill="#c8371d">82.7°C</text>
+                <circle cx="290" cy="105" r="4" fill="#1e3a5f"/>
+                <text x="298" y="102" font-family="JetBrains Mono" font-size="9" fill="#1e3a5f">76.9°C</text>
+                <!-- labels -->
+                <text x="215" y="260" font-family="JetBrains Mono" font-size="9" fill="#1a1815" text-anchor="middle">TIME (s) — FULL STOP @ 2.7s</text>
+                <text x="30" y="155" font-family="JetBrains Mono" font-size="9" fill="#1a1815" transform="rotate(-90 30 155)" text-anchor="middle">T (°C)</text>
+                <!-- legend -->
+                <g font-family="JetBrains Mono" font-size="8">
+                  <text x="80" y="85" fill="#c8371d">— UNOPTIMISED</text>
+                  <text x="80" y="100" fill="#1e3a5f">- - OPTIMISED</text>
+                </g>
+              </svg>
+            </div>
+            <figcaption class="figure-caption"><span class="fignum">Fig 4.2</span>Transient thermal — optimised rotor reduces peak temperature by 5.8°C during the full-stop event.</figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
+
+<!-- ═══════════════════════════════════════════════════
+     PROJECT V — MODEL-FREE CONTROL
+     ═══════════════════════════════════════════════════ -->
+<article id="w05" class="work">
+  <div class="container">
+    <header class="work-head">
+      <div class="work-num reveal"><span>§ Project V · Controls</span>05</div>
+      <div class="reveal delay-1">
+        <h3 class="work-title">Model-Free <em>Longitudinal</em> Speed Controller.</h3>
+        <div class="work-meta">
+          <span><strong>Context</strong>UT Dallas · Graduate</span>
+          <span><strong>Role</strong>Sole author</span>
+          <span><strong>Year</strong>2025</span>
+        </div>
+      </div>
+    </header>
+
+    <div class="work-body">
+      <aside class="work-sidebar reveal">
+        <div class="block">
+          <div class="label">Role</div>
+          Sole author — controller synthesis, implementation, and evaluation.
+        </div>
+        <div class="block">
+          <div class="label">Tooling</div>
+          MATLAB, Simulink — plant model, controller, Algebraic Differentiation Estimator (ADE) block.
+        </div>
+        <div class="block">
+          <div class="label">Core Idea</div>
+          The interesting half of the design is in the <em>estimator</em>, not the feedback law.
+        </div>
+      </aside>
+
+      <div class="work-main">
+        <p class="work-lead reveal">A controller that <em>does not need a plant model it can trust</em> — it only needs a clean estimate of the derivative. The interesting half of the design is in the estimator, not the feedback law.</p>
+
+        <div class="work-section reveal">
+          <div class="work-section-h"><span>The Idea</span><span>01</span></div>
+          <p class="work-p">Model-Free Control (MFC) replaces the unknown plant dynamics with an <strong>ultra-local model</strong> whose unknown part is estimated online from the input and output. That estimate is only useful if the derivative of the output can be recovered cleanly from a <em>noisy signal</em> — a problem where naïve finite differences catastrophically amplify noise.</p>
+        </div>
+
+        <div class="work-section reveal">
+          <div class="work-section-h"><span>Why ADE Matters</span><span>02</span></div>
+          <p class="work-p">Swapped naïve finite-difference differentiation for an <strong>Algebraic Differentiation Estimator</strong> built from integral operators that annihilate polynomial trends — giving a much smoother derivative estimate in the presence of measurement noise. The difference between the two approaches is the difference between <em>a usable controller and an oscillating one</em>.</p>
+        </div>
+
+        <!-- noise comparison figure -->
+        <div class="figure-row c2 reveal">
+          <figure class="figure svg-fig">
+            <div class="figure-slot">
+              <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+                <text x="20" y="28" font-family="JetBrains Mono" font-size="9" fill="#5a5550" letter-spacing="1">NAIVE DIFFERENTIATION</text>
+                <line x1="20" y1="38" x2="380" y2="38" stroke="#c9bfad"/>
+                <line x1="60" y1="80" x2="60" y2="260" stroke="#1a1815"/>
+                <line x1="60" y1="170" x2="380" y2="170" stroke="#1a1815" stroke-dasharray="2 2"/>
+                <!-- very noisy curve -->
+                <polyline points="60,170 75,140 85,200 95,130 105,210 115,125 125,205 135,140 145,195 155,130 165,200 175,140 185,195 195,145 205,200 215,150 225,185 235,140 245,195 255,145 265,190 275,140 285,195 295,145 305,180 315,150 325,185 335,145 345,180 355,150 365,175"
+                          stroke="#c8371d" stroke-width="1" fill="none"/>
+                <text x="220" y="280" font-family="JetBrains Mono" font-size="9" fill="#5a5550" text-anchor="middle">UNUSABLE · NOISE AMPLIFIED</text>
+              </svg>
+            </div>
+            <figcaption class="figure-caption"><span class="fignum">Fig 5.1</span>Direct finite-difference derivative — noise amplification destroys signal.</figcaption>
+          </figure>
+          <figure class="figure svg-fig">
+            <div class="figure-slot">
+              <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+                <text x="20" y="28" font-family="JetBrains Mono" font-size="9" fill="#5a5550" letter-spacing="1">ALGEBRAIC DIFFERENTIATION EST.</text>
+                <line x1="20" y1="38" x2="380" y2="38" stroke="#c9bfad"/>
+                <line x1="60" y1="80" x2="60" y2="260" stroke="#1a1815"/>
+                <line x1="60" y1="170" x2="380" y2="170" stroke="#1a1815" stroke-dasharray="2 2"/>
+                <!-- smooth -->
+                <path d="M 60 170 Q 150 110 220 140 Q 290 170 365 185" stroke="#1e3a5f" stroke-width="2.2" fill="none"/>
+                <text x="220" y="280" font-family="JetBrains Mono" font-size="9" fill="#5a5550" text-anchor="middle">CLEAN · USABLE IN FEEDBACK</text>
+              </svg>
+            </div>
+            <figcaption class="figure-caption"><span class="fignum">Fig 5.2</span>ADE derivative — integral operators annihilate polynomial trends, yielding a feedback-quality signal.</figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
+
+<!-- ═══════════════════════════════════════════════════
+     PROJECT VI — THESIS
+     ═══════════════════════════════════════════════════ -->
+<article id="w06" class="work">
+  <div class="container">
+    <header class="work-head">
+      <div class="work-num reveal"><span>§ Project VI · Ongoing Thesis</span>06</div>
+      <div class="reveal delay-1">
+        <h3 class="work-title">Resilient Vector <em>Consensus</em> for Multi-Agent Systems.</h3>
+        <div class="work-meta">
+          <span><strong>Lab</strong>CIRENs · UT Dallas</span>
+          <span><strong>Type</strong>M.S. Thesis</span>
+          <span><strong>Period</strong>Jun 2025 — present</span>
+        </div>
+      </div>
+    </header>
+
+    <div class="work-body">
+      <aside class="work-sidebar reveal">
+        <div class="block">
+          <div class="label">Role</div>
+          M.S. thesis research — algorithm analysis, MATLAB simulation, convergence &amp; robustness evaluation.
+        </div>
+        <div class="block">
+          <div class="label">Topics</div>
+          Geometric median · Tukey depth · CPIH · Byzantine-resilient consensus · static adversary models.
+        </div>
+      </aside>
+
+      <div class="work-main">
+        <p class="work-lead reveal">Can a network of autonomous agents agree on a common value when <em>some of them are faulty — or actively malicious</em> — and no agent knows the full network topology?</p>
+
+        <div class="work-section reveal">
+          <div class="work-section-h"><span>Problem</span><span>01</span></div>
+          <p class="work-p">Distributed consensus is well understood when all agents are trustworthy. The interesting regime — and the one that matters for real systems — is when a <strong>bounded number of agents lie, fail or are compromised</strong>. Resilient vector consensus extends this from scalar values to points in <em>Rᵈ</em>, which is closer to what actual robot swarms need.</p>
+        </div>
+
+        <div class="work-section reveal">
+          <div class="work-section-h"><span>Current Directions</span><span>02</span></div>
+          <ul class="work-list">
+            <li>Conducting research on resilient vector consensus algorithms focusing on <strong>geometric-median-based</strong> fault-tolerant consensus under a static adversary model.</li>
+            <li>MATLAB simulations to analyse convergence and robustness properties of the <strong>CPIH</strong> and <strong>Tukey-depth-based</strong> algorithms under parametric perturbations of the adversary strength.</li>
+            <li>Investigating how multi-agent systems can maintain consensus in the presence of <em>Byzantine / faulty agents</em> without global knowledge of network topology.</li>
+          </ul>
+        </div>
+
+        <div class="metric-grid reveal">
+          <div class="metric">
+            <div class="metric-value">CPIH</div>
+            <div class="metric-label">Convex Polytope Intersection Hull — baseline algorithm</div>
+          </div>
+          <div class="metric">
+            <div class="metric-value"><em>Tukey</em></div>
+            <div class="metric-label">Depth-based geometric filter for robust aggregation</div>
+          </div>
+          <div class="metric">
+            <div class="metric-value">R<sup style="font-size:0.5em">d</sup></div>
+            <div class="metric-label">Vector-valued agent state in d dimensions</div>
+          </div>
+        </div>
+
+        <div class="work-section reveal">
+          <div class="work-section-h"><span>Why It Matters</span><span>03</span></div>
+          <p class="work-p">The algorithms explored here have direct application to <strong>cooperative vehicle platoons</strong>, <strong>distributed robotic mapping</strong>, and any scenario where physical agents must reach agreement without a central coordinator they can trust. Each of those is a concrete mechanical-systems use case even though the maths lives in control theory.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
+
+<!-- ═══════════════════════════════════════════════════
+     PROJECT VII — BLENDER
+     ═══════════════════════════════════════════════════ -->
+<article id="w07" class="work">
+  <div class="container">
+    <header class="work-head">
+      <div class="work-num reveal"><span>§ Project VII · Product Design</span>07</div>
+      <div class="reveal delay-1">
+        <h3 class="work-title">Multi-Compartment <em>Mechanical</em> Blender.</h3>
+        <div class="work-meta">
+          <span><strong>Course</strong>DE G531 Product Design</span>
+          <span><strong>Institution</strong>BITS Pilani K.K. Birla Goa</span>
+          <span><strong>Period</strong>Jun — Dec 2023</span>
+        </div>
+      </div>
+    </header>
+
+    <div class="work-body">
+      <aside class="work-sidebar reveal">
+        <div class="block">
+          <div class="label">Role</div>
+          Mechanical design and prototyping lead on a four-person team applying a full QFD / DFMA design methodology.
+        </div>
+        <div class="block">
+          <div class="label">Tooling</div>
+          SolidWorks, QFD (House of Quality), Pugh matrix, FDM 3D printing, user-feedback surveys.
+        </div>
+        <div class="block">
+          <div class="label">Insight</div>
+          People want to batch-prep <em>small, separate</em> quantities of sauce or dressing — not one big smoothie.
+        </div>
+      </aside>
+
+      <div class="work-main">
+        <p class="work-lead reveal">A deliberately mechanical appliance — <em>no motor, no power cord</em> — built around a single user insight: people want to batch-prep small, separate quantities of sauce or dressing, not one big smoothie.</p>
+
+        <div class="work-section reveal">
+          <div class="work-section-h"><span>Design Process</span><span>01</span></div>
+          <p class="work-p">Started with a structured needs analysis — user interviews, competitor teardown, a full <strong>House of Quality</strong> mapping voice-of-customer to engineering characteristics. Generated concepts, ranked them with a <strong>Pugh matrix</strong>, and iterated the winning concept through two prototypes. DFMA was used to drive the final part count down — <em>the second prototype disassembles to eight parts</em>.</p>
+        </div>
+
+        <!-- process diagram -->
+        <div class="figure-row reveal">
+          <figure class="figure svg-fig">
+            <div class="figure-slot" style="aspect-ratio: 16/9;">
+              <svg viewBox="0 0 900 400" xmlns="http://www.w3.org/2000/svg">
+                <text x="30" y="35" font-family="JetBrains Mono" font-size="10" fill="#5a5550" letter-spacing="1.5">DESIGN PROCESS — FIVE-STAGE FLOW</text>
+                <line x1="30" y1="45" x2="870" y2="45" stroke="#c9bfad"/>
+                <!-- stages -->
+                <g font-family="JetBrains Mono" font-size="10">
+                  <!-- 1 -->
+                  <rect x="40" y="140" width="140" height="100" fill="none" stroke="#1a1815" stroke-width="1.2"/>
+                  <text x="55" y="165" fill="#c8371d" font-size="9" letter-spacing="1">01 · VOC</text>
+                  <text x="55" y="188" fill="#1a1815" font-size="11" font-weight="600">Needs</text>
+                  <text x="55" y="205" fill="#1a1815" font-size="11" font-weight="600">Analysis</text>
+                  <text x="55" y="224" fill="#5a5550" font-size="8">Interviews</text>
+                  <!-- arrow -->
+                  <line x1="185" y1="190" x2="210" y2="190" stroke="#c8371d" stroke-width="1.5"/>
+                  <polygon points="210,186 218,190 210,194" fill="#c8371d"/>
+                  <!-- 2 -->
+                  <rect x="220" y="140" width="140" height="100" fill="none" stroke="#1a1815" stroke-width="1.2"/>
+                  <text x="235" y="165" fill="#c8371d" font-size="9" letter-spacing="1">02 · QFD</text>
+                  <text x="235" y="188" fill="#1a1815" font-size="11" font-weight="600">House of</text>
+                  <text x="235" y="205" fill="#1a1815" font-size="11" font-weight="600">Quality</text>
+                  <text x="235" y="224" fill="#5a5550" font-size="8">VOC → Specs</text>
+                  <line x1="365" y1="190" x2="390" y2="190" stroke="#c8371d" stroke-width="1.5"/>
+                  <polygon points="390,186 398,190 390,194" fill="#c8371d"/>
+                  <!-- 3 -->
+                  <rect x="400" y="140" width="140" height="100" fill="none" stroke="#1a1815" stroke-width="1.2"/>
+                  <text x="415" y="165" fill="#c8371d" font-size="9" letter-spacing="1">03 · PUGH</text>
+                  <text x="415" y="188" fill="#1a1815" font-size="11" font-weight="600">Concept</text>
+                  <text x="415" y="205" fill="#1a1815" font-size="11" font-weight="600">Ranking</text>
+                  <text x="415" y="224" fill="#5a5550" font-size="8">Matrix eval</text>
+                  <line x1="545" y1="190" x2="570" y2="190" stroke="#c8371d" stroke-width="1.5"/>
+                  <polygon points="570,186 578,190 570,194" fill="#c8371d"/>
+                  <!-- 4 -->
+                  <rect x="580" y="140" width="140" height="100" fill="none" stroke="#1a1815" stroke-width="1.2"/>
+                  <text x="595" y="165" fill="#c8371d" font-size="9" letter-spacing="1">04 · DFMA</text>
+                  <text x="595" y="188" fill="#1a1815" font-size="11" font-weight="600">Prototype</text>
+                  <text x="595" y="205" fill="#1a1815" font-size="11" font-weight="600">→ 8 parts</text>
+                  <text x="595" y="224" fill="#5a5550" font-size="8">FDM iterations</text>
+                  <line x1="725" y1="190" x2="750" y2="190" stroke="#c8371d" stroke-width="1.5"/>
+                  <polygon points="750,186 758,190 750,194" fill="#c8371d"/>
+                  <!-- 5 -->
+                  <rect x="760" y="140" width="100" height="100" fill="#c8371d" stroke="#1a1815" stroke-width="1.2"/>
+                  <text x="775" y="165" fill="#f2ede3" font-size="9" letter-spacing="1">05 · FINAL</text>
+                  <text x="775" y="195" fill="#f2ede3" font-size="11" font-weight="600">Product</text>
+                  <text x="775" y="212" fill="#f2ede3" font-size="11" font-weight="600">Delivered</text>
+                </g>
+              </svg>
+            </div>
+            <figcaption class="figure-caption"><span class="fignum">Fig 7.1</span>Five-stage design process — from voice-of-customer interviews to DFMA-iterated prototype at 8 parts.</figcaption>
+          </figure>
+        </div>
+
+        <div class="metric-grid reveal">
+          <div class="metric">
+            <div class="metric-value">8<span class="unit">parts</span></div>
+            <div class="metric-label">Final assembly after DFMA iteration, tool-free disassembly</div>
+          </div>
+          <div class="metric">
+            <div class="metric-value">2<span class="unit">prototypes</span></div>
+            <div class="metric-label">Physical iterations — foam-core then FDM</div>
+          </div>
+          <div class="metric">
+            <div class="metric-value"><em>0</em> W</div>
+            <div class="metric-label">Electrical consumption — fully mechanical appliance</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
+
+<!-- ═══════════════════════════════════════════════════
+     PROJECT VIII — BRIDGE BEARING
+     ═══════════════════════════════════════════════════ -->
+<article id="w08" class="work">
+  <div class="container">
+    <header class="work-head">
+      <div class="work-num reveal"><span>§ Project VIII · Graduate FEA</span>08</div>
+      <div class="reveal delay-1">
+        <h3 class="work-title">Pot-Type <em>Bridge Bearing</em> — Abaqus Contact FEA.</h3>
+        <div class="work-meta">
+          <span><strong>Course</strong>Materials Design &amp; Manufacturing</span>
+          <span><strong>Institution</strong>UT Dallas</span>
+          <span><strong>Period</strong>Jan — May 2025</span>
+        </div>
+      </div>
+    </header>
+
+    <div class="work-body">
+      <aside class="work-sidebar reveal">
+        <div class="block">
+          <div class="label">Role</div>
+          Sole author — geometry, material selection, contact-model definition, multi-step analysis and writeup.
+        </div>
+        <div class="block">
+          <div class="label">Tooling</div>
+          Abaqus / CAE — contact, nonlinear materials, multi-step loading (encastre base, vertical load, rotation).
+        </div>
+      </aside>
+
+      <div class="work-main">
+        <p class="work-lead reveal">Three load steps, <em>one physically meaningful answer</em>: the bearing has to carry vertical dead load, survive horizontal displacement and accommodate rotation without exceeding material allowables.</p>
+
+        <div class="work-section reveal">
+          <div class="work-section-h"><span>The Component</span><span>01</span></div>
+          <p class="work-p">A pot-type bridge bearing sits between the bridge deck and the pier. It transfers load vertically, but also has to tolerate <strong>deck rotation</strong> and <strong>horizontal translation</strong> driven by thermal expansion and live load. The confined elastomer pad inside the pot is what makes that combination possible.</p>
+        </div>
+
+        <div class="work-section reveal">
+          <div class="work-section-h"><span>Load Sequence</span><span>02</span></div>
+          <ul class="work-list">
+            <li><strong>Step 1</strong> — fixes the base (encastre boundary condition).</li>
+            <li><strong>Step 2</strong> — applies a 1 MPa uniform vertical pressure on the sole.</li>
+            <li><strong>Step 3</strong> — adds a prescribed rotation to emulate deck thermal rotation.</li>
+            <li>Contact was defined between sole, PTFE pad, piston and pot wall.</li>
+          </ul>
+        </div>
+
+        <!-- load sequence figure -->
+        <div class="figure-row c3 reveal">
+          <figure class="figure svg-fig">
+            <div class="figure-slot">
+              <svg viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+                <text x="15" y="28" font-family="JetBrains Mono" font-size="9" fill="#c8371d" letter-spacing="1">STEP 01 · ENCASTRE</text>
+                <line x1="15" y1="38" x2="285" y2="38" stroke="#c9bfad"/>
+                <g transform="translate(150 180)">
+                  <rect x="-70" y="0" width="140" height="20" fill="#1e3a5f" stroke="#1a1815"/>
+                  <rect x="-50" y="-25" width="100" height="25" fill="#c8371d" stroke="#1a1815"/>
+                  <rect x="-60" y="-45" width="120" height="20" fill="#5a5550" stroke="#1a1815"/>
+                  <rect x="-80" y="-55" width="160" height="10" fill="#1a1815"/>
+                  <!-- encastre marks -->
+                  <g stroke="#1a1815" stroke-width="1">
+                    <line x1="-70" y1="20" x2="-75" y2="30"/>
+                    <line x1="-50" y1="20" x2="-55" y2="30"/>
+                    <line x1="-30" y1="20" x2="-35" y2="30"/>
+                    <line x1="-10" y1="20" x2="-15" y2="30"/>
+                    <line x1="10" y1="20" x2="5" y2="30"/>
+                    <line x1="30" y1="20" x2="25" y2="30"/>
+                    <line x1="50" y1="20" x2="45" y2="30"/>
+                    <line x1="70" y1="20" x2="65" y2="30"/>
+                  </g>
+                  <line x1="-75" y1="32" x2="75" y2="32" stroke="#1a1815"/>
+                </g>
+              </svg>
+            </div>
+            <figcaption class="figure-caption"><span class="fignum">Fig 8.1</span>Step 1 — base fixed (encastre).</figcaption>
+          </figure>
+          <figure class="figure svg-fig">
+            <div class="figure-slot">
+              <svg viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+                <text x="15" y="28" font-family="JetBrains Mono" font-size="9" fill="#c8371d" letter-spacing="1">STEP 02 · VERTICAL 1 MPa</text>
+                <line x1="15" y1="38" x2="285" y2="38" stroke="#c9bfad"/>
+                <g transform="translate(150 180)">
+                  <!-- pressure arrows -->
+                  <g stroke="#c8371d" stroke-width="1.5" fill="#c8371d">
+                    <line x1="-60" y1="-90" x2="-60" y2="-58"/>
+                    <polygon points="-63,-62 -60,-54 -57,-62"/>
+                    <line x1="-30" y1="-90" x2="-30" y2="-58"/>
+                    <polygon points="-33,-62 -30,-54 -27,-62"/>
+                    <line x1="0" y1="-90" x2="0" y2="-58"/>
+                    <polygon points="-3,-62 0,-54 3,-62"/>
+                    <line x1="30" y1="-90" x2="30" y2="-58"/>
+                    <polygon points="27,-62 30,-54 33,-62"/>
+                    <line x1="60" y1="-90" x2="60" y2="-58"/>
+                    <polygon points="57,-62 60,-54 63,-62"/>
+                  </g>
+                  <rect x="-70" y="0" width="140" height="20" fill="#1e3a5f" stroke="#1a1815"/>
+                  <rect x="-50" y="-25" width="100" height="25" fill="#c8371d" stroke="#1a1815"/>
+                  <rect x="-60" y="-45" width="120" height="20" fill="#5a5550" stroke="#1a1815"/>
+                  <rect x="-80" y="-55" width="160" height="10" fill="#1a1815"/>
+                </g>
+              </svg>
+            </div>
+            <figcaption class="figure-caption"><span class="fignum">Fig 8.2</span>Step 2 — 1 MPa uniform pressure on the sole.</figcaption>
+          </figure>
+          <figure class="figure svg-fig">
+            <div class="figure-slot">
+              <svg viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+                <text x="15" y="28" font-family="JetBrains Mono" font-size="9" fill="#c8371d" letter-spacing="1">STEP 03 · ROTATION</text>
+                <line x1="15" y1="38" x2="285" y2="38" stroke="#c9bfad"/>
+                <g transform="translate(150 180) rotate(-6)">
+                  <rect x="-80" y="-55" width="160" height="10" fill="#1a1815"/>
+                  <rect x="-60" y="-45" width="120" height="20" fill="#5a5550" stroke="#1a1815"/>
+                </g>
+                <g transform="translate(150 180)">
+                  <rect x="-70" y="0" width="140" height="20" fill="#1e3a5f" stroke="#1a1815"/>
+                  <rect x="-50" y="-25" width="100" height="25" fill="#c8371d" stroke="#1a1815"/>
+                </g>
+                <g transform="translate(150 180)">
+                  <path d="M 70 -50 A 20 20 0 0 1 55 -75" stroke="#c8371d" stroke-width="1.5" fill="none"/>
+                  <polygon points="55,-75 51,-68 60,-70" fill="#c8371d"/>
+                </g>
+              </svg>
+            </div>
+            <figcaption class="figure-caption"><span class="fignum">Fig 8.3</span>Step 3 — prescribed rotation emulating deck thermal effects.</figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
+
+<!-- ═══════════ EDUCATION ═══════════ -->
+<section id="education" class="edu">
+  <div class="container">
+    <div class="section-mark reveal">§ 03 &nbsp;·&nbsp; Academic Record</div>
+    <h2 class="reveal">Formal <em>training</em>.</h2>
+
+    <div class="edu-grid">
+      <div class="edu-card reveal">
+        <div class="period">Jan 2025 — Present · Dallas, TX</div>
+        <h3>M.S. <em>Mechanical Engineering</em></h3>
+        <div class="inst">The University of Texas at Dallas</div>
+        <p><strong>Concentration:</strong> Simulation, controls, and multi-agent systems.</p>
+        <p><strong>Graduate Coursework:</strong> Finite Element Method, Materials Design &amp; Manufacturing, Advanced Engineering Mathematics, Vehicle Dynamics, Nonlinear Systems.</p>
+        <p><strong>Thesis:</strong> Resilient Vector Consensus for Multi-Agent Systems (CIRENs Lab).</p>
+      </div>
+
+      <div class="edu-card reveal delay-1">
+        <div class="period">Sep 2020 — Jul 2024 · K.K. Birla Goa</div>
+        <h3>B.E. <em>Mechanical Engineering</em></h3>
+        <div class="inst">Birla Institute of Technology &amp; Science, Pilani</div>
+        <p><strong>Research Assistant:</strong> Orthopedic Biomechanics Laboratory (Nov 2022 – Jan 2025).</p>
+        <p><strong>Selected Coursework:</strong> Mechanical Design, Solid Mechanics, Heat Transfer, Manufacturing Processes, Control Systems, Product Design (DE G531).</p>
+        <p><strong>Activities:</strong> Team Greasemonkeys (SAE BAJA India 2022) — Brakes Sub-Team.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ TOOLING APPENDIX ═══════════ -->
+<section id="tooling" class="tooling">
+  <div class="container">
+    <div class="section-mark reveal">§ IX &nbsp;·&nbsp; Appendix</div>
+    <div class="tooling-head">
+      <h2 class="reveal">Tooling &amp; <em>Methods</em>.</h2>
+      <p class="reveal delay-1">A reference map of the software, simulation packages, and design methodologies I work fluently across.</p>
+    </div>
+
+    <div class="tooling-grid reveal">
+      <div class="tool-cat">
+        <h4>CAD &amp; Mechanical Design</h4>
+        <p>SolidWorks · Fusion 360 · <em>Siemens NX</em> · Creo Parametric · AutoCAD · SolidEdge.</p>
+      </div>
+      <div class="tool-cat">
+        <h4>Simulation &amp; FEA</h4>
+        <p>ANSYS Mechanical <em>(Structural, Transient Thermal, Modal)</em> · Abaqus / CAE · COMSOL Multiphysics · Simpack.</p>
+      </div>
+      <div class="tool-cat">
+        <h4>Programming &amp; Numerical</h4>
+        <p>MATLAB · Python · Simulink · Arduino IDE · <em>scripting post-processing pipelines and batch-simulation automation</em>.</p>
+      </div>
+      <div class="tool-cat">
+        <h4>Vehicle Dynamics</h4>
+        <p>Multibody modelling · OpenCRG road profiles · batch simulation · <em>vehicle-level validation against standards</em>.</p>
+      </div>
+      <div class="tool-cat">
+        <h4>Manufacturing &amp; Prototyping</h4>
+        <p>FDM 3D printing · rapid prototyping · basic machine-shop operations. <em>Comfort moving between CAD and hardware.</em></p>
+      </div>
+      <div class="tool-cat">
+        <h4>Research Methods</h4>
+        <p>Experimental design · statistical analysis in MATLAB · <em>FEA validation against experiment</em> · technical writing.</p>
+      </div>
+      <div class="tool-cat">
+        <h4>Design Methods</h4>
+        <p>QFD / House of Quality · Pugh matrix · DFMA · human-factors engineering · Design for Assembly.</p>
+      </div>
+      <div class="tool-cat">
+        <h4>Sensors &amp; Electronics</h4>
+        <p>Arduino · thermistor arrays · <em>custom PCB integration</em> · Bluetooth data-logging for experimental stacks.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ CONTACT ═══════════ -->
+<section id="contact" class="contact">
+  <div class="container">
+    <div class="section-mark reveal" style="color:#e99383;">§ 04 &nbsp;·&nbsp; Contact</div>
+    <h2 class="contact-head reveal">Thank you <em>for reading</em>.</h2>
+
+    <div class="contact-grid">
+      <p class="contact-lead reveal">The projects here represent a subset of the work I've done across <em>simulation, experimental research, and mechanical design</em>. I would be glad to discuss any of them in more detail — and to learn what you are working on.</p>
+
+      <div class="contact-info reveal delay-1">
+        <a href="mailto:ambalgipushkaraj01@gmail.com">
+          <span>ambalgipushkaraj01@gmail.com</span>
+          <span class="k">Email</span>
+        </a>
+        <a href="tel:+19452178813">
+          <span>+1 (945) 217-8813</span>
+          <span class="k">Phone</span>
+        </a>
+        <a href="https://linkedin.com/in/pushkaraj-ambalgi" target="_blank" rel="noopener">
+          <span>/in/pushkaraj-ambalgi</span>
+          <span class="k">LinkedIn</span>
+        </a>
+        <a>
+          <span>Dallas, TX · USA</span>
+          <span class="k">Location</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="colophon">
+      <div>© MMXXVI · Pushkaraj Ambalgi · All works</div>
+      <div class="right">Engineering Portfolio · Vol. 01 · Set in Fraunces &amp; JetBrains Mono</div>
+    </div>
+  </div>
+</section>
+
+<script>
+// Scroll reveal
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+}, { threshold: 0.12, rootMargin: "0px 0px -40px 0px" });
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+// Enhance internal nav scroll offset
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', (e) => {
+    const id = a.getAttribute('href').slice(1);
+    if (!id) return;
+    const el = document.getElementById(id);
+    if (el) {
+      e.preventDefault();
+      window.scrollTo({ top: el.offsetTop - 60, behavior: 'smooth' });
+    }
+  });
+});
+</script>
+
+</body>
+</html>
