@@ -1,0 +1,439 @@
+A REPORT ON
+
+**DESIGN OF MAGNETIC WHEEL FOR ADHESI****ON ****LOCOMOTIVE SYSTEM**
+
+BY
+
+	
+
+	                             Pushkaraj Ambalgi	2020A4PS1985G
+
+AT
+
+**A M Naik Heavy Engineering Complex, Larsen ****&**** Toubro, Hazira – Surat**
+
+A Practice School-I Station of
+
+		**BIRLA**** ****INSTITUTE**** ****OF**** ****TECHNOLOGY**** ****&**** ****SCIENCE,**** ****PILANI**** ****     **** ****    ****  **** ****(**** ****July****,**** ****2022)**
+
+A REPORT ON
+
+**DESIG****N OF MAGNETIC WHEEL FOR ADHESION**** LOCOMOTIVE SYSTEM**
+
+BY
+
+	      Pushkaraj Ambalgi	2020A4PS1985G
+
+Prepared in partial fulfillment of the Practice School-I Course No.
+
+BITS F221
+
+AT
+
+** ****A M Naik Heavy Engineering Complex, Larsen ****&**** Toubro, Hazira – Surat**
+
+A Practice School-I Station of
+
+**BIRLA**** ****INSTITUTE**** ****OF**** ****TECHNOLOGY**** ****&**** ****SCIENCE,**** ****PILANI(July****,**** ****2022)**
+
+**ACKNOWLEDGEMENTS**
+
+I would like to thank BITS Pilani for giving me this opportunity to work with a prestigious company like Larsen & Toubro Pvt. Ltd
+
+I would like to extend my gratitude to Larsen & Toubro Pvt. Ltd for    giving me this chance and exposure to experience the industrial field, the various production techniques and their planned structure.
+
+I would like to thank my PS Mentors Mr. Nishant Neerabidre and Mr. Somdeep Dutta for providing their guidance and valuable time for the project and for being  supportive the whole time.
+
+Also, I would like to extend my special thanks to my PS faculty Dr. Pratik N Sheth for his valuable support and guidance throughout the journey.
+
+## BIRLA INSTITUTE OF TECHNOLOGY AND SCIENCE,
+
+**PILANI**** ****(Goa)**
+
+## Practice School Division
+
+	**Station:**** **Larsen & Toubro Pvt. Ltd.**                     ****Centre: **Hazira, Surat **Duration:**** **30/05/2022 to 22/07/2022
+
+**Date**** ****of**** ****Start:**** **30/05/2022
+
+**Date**** ****of**** ****Submission:**** **21/07/2022
+
+**                ****Title**** ****of**** ****the**** ****Project:**** **Design of Magnetic Wheel for adhesion locomotive system**                            ****                                                                   **
+
+		**ID**** ****No.**	**Name**	**Discipline**
+
+		2020A4PS1985G             Pushkaraj Ambalgi                    B.E (Mechanical)
+
+**Names**** ****of**** ****the**** ****Experts:**** **Mr. Nishant Neerabidre and Mr.Somdeep Dutta
+
+**Name**** ****of**** ****the**** ****PS**** ****Faculty:**** **Dr. Pratik N Sheth
+
+**Project**** ****Areas:**** **Magnetism, Rigid body Dynamics, Manufacturing, Design.
+
+		**Abstract****: **Surface maintenance and   inspection of    large structures is important to increase service life and efficiency. But the manual methods have their short-comings like limited maneuverability, risk of accidents errors in inspection etc. This project aims at developing a magnetic wheel that can be used in a climbing robot to climb large   steel structures. The research is directed at designing light-weight magnet system to provide optimum adhesion force.
+
+**About Larsen ****&**** Toubro**
+
+With over 80 years of a strong, customer focused approach and a continuous quest for world-class quality, L&T has unmatched capabilities across Technology, Engineering, Construction, and Manufacturing, and maintains a leadership in all its major lines of business.
+
+**Some of the major lines of business are:**
+
+- Construction
+
+- Hydrocarbon
+
+- Power
+
+- Minerals and metals
+
+- Heavy Engineering 
+
+- Defense
+
+- Shipbuilding
+
+- Construction and Mining Machinery
+
+- Valves
+
+- Technology services
+
+- Metrorail
+
+- Mindtree
+
+** **
+
+** L****&****T Heavy Engineering**
+
+         L&T Heavy Engineering manufactures and supplies custom designed equipment & critical piping to process industries such as fertilizer, chemical, refinery, petrochemical, and oil & gas, as well as to sectors such as thermal & nuclear power and aerospace.
+
+**TABLE OF CONTENTS**
+
+- **Introduction**
+
+- **Project Description**
+
+- **Research**
+
+- Halbach Array
+
+- Halbach Cylinder
+
+- Prototype Testing
+
+- **Calculations**
+
+- Magnetic Field Calculations
+
+- Magnetic Pull Force Calculations
+
+- Dynamic Pull Force Calculations
+
+- Excel Sheet Calculations
+
+- **Design**
+
+- Halbach Cylinder
+
+- Wheel Prototype
+
+- Static Test Setup
+
+- Dynamic Test Setup
+
+- Shafts
+
+- **Manufacturing**
+
+- **Wheel Catalogue**
+
+- Catalogue 1
+
+- Catalogue 2
+
+- **Project Time-line**
+
+- **Results and Project Outcome**
+
+- ** ****References**
+
+- ** ****Glossary**
+
+	- **INTRODUCTION**
+
+       
+
+         Ships, offshore platforms, petroleum storage tanks, and sea-crossing bridges are important structures to industry and economy. In order to keep them working for longer time, it is very necessary to conduct regular surface maintenances to those high structures at some intervals, including non-destructive testing, removal of rust, and stripping of corrosion. But this is a very difficult task to be done manually – firstly, due to limited maneuverability. Secondly, the risk of falling from scaff-holdings and thirdly it adds to additional costs and time.
+
+         
+
+         Technologies of wall-climbing robots have been researched for a few decades. Considering the high working surfaces, adhesion-locomotion system plays an important role in a wall-climbing robot. It provides an adhesive force to produce enough friction for sustaining the weight of robot and payloads. It provides a climbing movement on the surface with high velocity and maneuverability.
+
+	         Some of the applications of adhesion – locomotive system are:
+
+- Weld Inspection
+
+- Hull Inspection
+
+- Inspection of Wind Turbines
+
+- Coating
+
+- Tanker cleaning
+
+- **P****ROJECT DESCRIPTION**
+
+       L&T Heavy Engineering has majorly four verticals of business:
+
+	- Process plant
+
+	- Nuclear
+
+	- Modification Revamp and Upgrade
+
+	- Piping
+
+                
+
+This includes very large and heavy components, usually cylindrical. So they have                  to be prepared in parts and then assembled later. They are joined together with help of welding, namely Long-seam welding (along the length) and circular-seam welding (along the circumference). Thus welding becomes a most important and critical process for manufacturing large components, their strength, efficiency, and durability. And hence the weld inspection also becomes an important aspect of production.
+
+This is done by non – destructive testing like ultra-sonic testing which requires the ultrasound to pass through the weld. Doing it manually is a difficult task, limited maneuverability, risk of accidents errors in inspection etc. Here, the adhesion – locomotive system comes into picture. It can travel over the job carrying all the equipments required for testing without falling down due its weight.
+
+- **RESEARCH**
+
+**      ****3.1**** ****Halbach array**
+
+**          **
+
+The main crux in the adhesion – locomotive system is the strength of the magnetic wheel. This project aims at providing the maximum possible force for the given size of the wheel. The strength of the magnetic wheel mostly depends on the arrangement of magnets within it, such that they add up to their original magnetic field.
+
+Such a type of strong arrangement is the Halbach array. A Halbach array is a special arrangement of permanent magnets that makes the magnetic field on one side of the array stronger, while canceling the field to near zero on the other side.  This is very different from the magnetic field around a single magnet. The advantages of one-sided flux distributions are twofold:
+
+- The field is twice as large on the side on which the flux is confined (in the idealized case).
+
+- There is no stray field produced (in the ideal case) on the opposite side. This helps with field confinement, usually a problem in the design of magnetic structures.
+
+                                                                Normal Array                                   Halbach Array
+
+The above figure represents a linear Halbach array. But the similar type of analogy can be used in circular form. But this opens door for few variety of orientations in the circular array which may affect location of strong and weak side and also the magnitude of the magnetic field density on stronger side.
+
+	**3.2 ****Halbach Cylinder**
+
+A Halbach cylinder is a magnetized cylinder which produces a intense magnetic field on inner side of the cylinder and almost zero on the outer side of the cylinder. The cylinder can also be magnetized in such a way that it produces a stronger magnetic field on the outer diameter of the cylinder and a weak magnetic field over the inner diameter of the cylinder.
+
+The different orientations are denoted by letter p which may have values p = +1, -1, +2, -2, +3, -3. Where the negative and positive sign indicates the presence of strong magnetic field over outer diameter or the inner diameter respectively. And the magnitude of the number represents the number of poles of the Halbach Cylinder. For example, 1 represents Di – polar array, 2 represents Quadro – polar array, and 3 represents Hexa – polar array. 
+
+For the application of Halbach Cylinder in this project a, Halbach cylinder with negative value of p is considered. As the outer surface of the cylinder will be in contact with the ferromagnetic surface there is requirement of stronger field on the outer surface of the wheel.
+
+**3.3**** ****Prototype Testing**
+
+The testing procedures clearly indicate that the pull force (𝐹t) is applied though a digital force gauge against the measurement force, where (𝐹a) is wheel adhesion and (f) is wheel friction force. The magnetic wheel tyre is connected by hook arrangement to the digital force gauge of motorized test stand for the adhesion force measurements and the pull force is applied though motorized test stand with linear actuator against the measurement force. Wheel mechanism is linked to a digital force gauge using hooks and non-stretchable steel wire rope for coefficient of friction measurement. The digital force gauge mounted on motorized test stand pulls in case of adhesion force testing and slides in case of COF testing the magnetic wheel with some speed.
+
+  
+
+- ** CALCULATIONS**
+
+**4.1 Magnetic Field calculations**
+
+Under the calculations the project aims at finding the resultant magnetic field due to the Halbach cylinder and the corresponding pull force applied on the ferromagnetic surface. Firstly, few properties of magnetic material need to be defined – Remanent magnetic field, magnetic permeability, and relative permeability.
+
+The calculations begin with relating the magnetic flux density (B) to the magnetic vector potential (A). And then defining the Magnetic vector potential.
+
+B = ∇×A 
+
+Boundary Conditions
+
+The constants are calculated with help of boundary conditions. And then the radial and circumferential magnetic flux density (B) is calculated with help of relation with magnetic vector potential as given below.
+
+But the above calculations shown calculate the magnetic field density at particular point are due to an ideal Halbach Cylinder which has a homogeneous and continuous magnetic field, and which is difficult to construct for practical use. In practical the Halbach cylinder is constructed using discrete magnets of identical size which generate similar field.
+
+   
+
+                                    Homogeneous Array             Discrete Array
+
+		
+
+The discretization of Halbach Cylinder lower its magnetic field and hence its pulling force. Thus it is necessary to take into consideration the discrete nature of Halbach array. NMR Mandhalas (Magnetic Arrangement for Novel Discrete Halbach Layout) defines the ratio by which the magnetic field of a discrete Halbach cylinder reduce by. 
+
+Since ideal Halbach cylinders (infinitely long cylinders of continuously changing magnetization direction) cannot be produced, they are usually made in a discretized fashion of the ideal one. NMR-Mandhalas are simply discrete versions which can be built from a single magnet type (one shape, one magnetization direction). Thus the field due to discrete Halbach array is given by multiplying the magnetic field due to ideal Halbach cylinder with the ratio of the area of the block magnets to that of a Halbach cylinder.  
+
+- **Magnetic Pull – Force Calculations**
+
+Magnetic pull force is the total amount of force required to break the contact of magnet with the surface it is in contact with. The formula given below describes the total pull force of a magnet having a rectangular surface.
+
+    
+
+The same logic can be used in case of a cylindrical magnet by considering the approximate area of contact with the surface.
+
+- **Dynamic Force Calculations**
+
+A methodology was developed to calculate the pull force applicable on the wheel when it is in motion. A wheel with mass m, radius R, and mass moment of inertia I was chosen. The wheel is driven by a motor providing it a torque T. Let the magnetic force on the wheel be Fm and the external pulling applied on the wheel is Fp. The friction at the point of contact is f. The wheel is considered to be in pure rolling motion. The figure below shows the calculations done. It was observed that the load carrying capacity of the wheel reduces when the wheel is in motion.
+
+ 
+
+- **Excel Sheet Calculations**
+
+A calculator in Excel sheet was created which would give out the value of magnetic flux at a particular point along with the magnetic pull force and the payload sustained by a single wheel. The Excel sheet is shown below.
+
+Along with the Excel sheet calculator a table was also generated which will provide the user with the dimensions of the wheel and the magnet as per his/her requirement of the payload. The graph of weight sustained by the wheel versus the diameter of wheel was exponential in nature as shown below.
+
+		- **DESIGN**
+
+	- **Halbach Cylinder**
+
+During the designing of magnetic wheel, the following parameters were taken into consideration.
+
+- Pitch circle diameter of the wheel.
+
+- Size of the block magnet.
+
+- Number of magnets in the cylinder.
+
+- Inner and outer diameter of Halbach cylinder.
+
+The most important aspect during the designing of the Halbach cylinder is the roll angle i.e. the angle through which the direction of magnetic orientation of the next magnet change w.r.t the magnet preceding it. This gives rise to mainly two types of Halbach cylinder design.
+
+	- Quadro-polar Halbach Cylinder ( p = -2)
+
+	- Hexa-polar Halbach Cylinder (p = -3)
+
+The Quadro-polar array generates four poles within the Halbach cylinder and the Hexa-polar array generates six poles on the Halbach cylinder as shown in figure below. 
+
+Hence the basic design for both Quadro-polar and hexa-polar was generated using the Solid Edge software along with the orientation of the magnetic poles as shown below.
+
+              
+
+   Quadro-polar Halbach Cylinder     Hexa-polar Halbach Cylinder
+
+- **Wheel Prototype**
+
+Along with the basic design for the Halbach cylinder the prototype wheel assembly was also designed on Solid Edge CAD modeling software to carry out static and dynamic tests. The design consists of the outer and inner sleeves to cover the Halbach cylinder and a shaft with keyway that would drive the wheel. The exploded view of the same is shown below.
+
+	-  **Static Test**** Setup**
+
+	The static test setup consists of a magnetic wheel which is attached to a ferromagnetic surface. A rod is then inserted in the central portion of wheel in a horizontal manner such that its both ends extend out of the width of the wheel. Then an inelastic string is tied to both ends of the rod in such way that it forms a hook. Then another string is attached to the hook which passes over a pulley vertically above it then over a pulley at the same elevation. This string is then pulled downwards by adding weights gradually. 
+
+	
+
+	
+
+	
+
+	
+
+	-  **Dynamic Test**** Setup**
+
+	
+
+	The dynamic test setup consists of two slides. One slide in horizontal direction and other in vertical direction perpendicular to the first one. Carriages are placed on the slides so that they can move free in one particular diection. The slides are connected by a plate using fasteners. On the carriage of vertical slide a C – Bracket is mounted such that one of the face of C – Bracket is threaded on to the face of carriage and a DC motor is mounted on the opposite face of the bracket. Between the walls of C – Bracket a shaft with wheel is mounted on bearings such that it can rotate freely over the shaft of the motor. The lower surface of the horizontal slide is made up of mild steel so that the wheel sticks to it and moves horizontally along the slide. Simultaneously weights are added to the wheel, once it reaches its maximum limit the wheel ditaches and moves along the vertical slide.
+
+	
+
+	
+
+Horizontal Slide
+
+Vertical Slide
+
+Carriages
+
+Shaft
+
+C – Bracket 
+
+- **Shafts**
+
+The testing of the Halbach wheel is done along with the testing and comparison with other three magnetic wheels JIREH, FAIZEAL, conventional. This was done to know the effectiveness of the design in comparison with others. For the testing customized shafts were design to ensure compatibility with the test setup. The following four shafts were designed.
+
+**    **
+
+- ** ****MANUFACTURING**
+
+For manufacturing of the wheel prototype three options were considered:- 
+
+- Conventional machining
+
+- Water Jet
+
+- 3D Printing
+
+There were few issues that came up with the first two methods of machining. For the conventional machining the appropriate size of the drilling and milling tool was not available. Thus due to limited space in the cutout the motion of the tool was restricted and the required cutout was not possible.
+
+For the water jet cutting method the problem of fine edges and tool unavailability was solved, but the manufacturing cost of the water jet cutting was out of the budget of project. Finally the option of 3D Printing was chosen for manufacturing the wheel which eliminated all the challenges in manufacturing.
+
+Another issue during the manufacturing of the magnetic wheel was the unavailability of required size and the grade of the magnet. The issue of size of magnet was tackled by scaling the dimensions of the wheel according to the available size in a way that didn’t affect the basic principle and effectiveness of the design.
+
+- **MAGNETIC WHEEL CATALOGUE**
+
+Based on the research, calculations, and design a catalogue was generated which provided variety of different magnetic wheels with different payload capacity.
+
+It consists majorly of two parts:- 
+
+- Wheel dimensions
+
+- Weight sustained
+
+The dimensional part consists of the 
+
+- Width of the wheel
+
+- Diameter of the wheel
+
+- Edge length of the square face of the magnet
+
+- Inner diameter and outer diameter which defines the position of Halbach array from center of the circle.
+
+By defining the above dimensions, the maximum weight sustained by the wheel can be obtained. Based on the above dimensions two catalogues were prepared – Catalogue 1 and Catalogue 2.
+
+- **Catalogue 1**
+
+The categorization of different magnetic wheels in this catalogue is done on the basis of the easy availability of the magnets. The size of the magnet is the independent variable in this catalogue and the dependent variables are the various dimensions of the wheel and the output is the maximum weight sustained by the wheel.
+
+- **Catalogue 2**
+
+The categorization of different magnetic wheels in this catalogue does not focus on the easy availability of the magnets. Rather it provides variety of load capacities as per the requirement of the user. This catalogue provides with weight carrying capacity ranging from 5 kg to 110 kg with slabs of 5 kgs.
+
+	- **PROJECT TIMELINE**
+
+	
+
+	- **RESULTS AND PROJECT OUTCOME**
+
+Design for a magnetic wheel was generated based on the research and the magnetic pull force calculations. The outcomes and the benefits of this projects are:
+
+- A more enhanced design than the earlier wheel, a greater load bearing capacity than the earlier design in the same size.
+
+- The generation of the Magnetic pull force calculator will help the user to simulate the magnetic pull force by varying the required parameters and carrying out some permutations and combinations.
+
+- The table that was created in excel along with the graph of pull force versus diameter of wheel will help the user to pick out the predefined dimensions of the wheels and magnet according to his/her requirement of the payload.
+
+- The design of the Halbach cylinder uses square magnets which are readily available in the market.
+
+- Producing the magnetic wheel in-house rather than outsourcing it will reduce the cost and also will allow the user with large customization according to the requirements.
+
+- **REFRENCES**
+
+- [https://www.semanticscholar.org/paper/Analysis-of-the-magnetic-field%2C-force%2C-and-torque-Bj%C3%B8rk-Bahl/418c916d35989228831276faa50d2d72cc2f7cfd](https://www.semanticscholar.org/paper/Analysis-of-the-magnetic-field%2C-force%2C-and-torque-Bj%C3%B8rk-Bahl/418c916d35989228831276faa50d2d72cc2f7cfd)
+
+- [https://onlinelibrary.wiley.com/doi/epdf/10.1002/cmr.b.20018](https://onlinelibrary.wiley.com/doi/epdf/10.1002/cmr.b.20018)
+
+- [https://www.blogs.uni-mainz.de/fb08-physics-halbach-magnets/files/2017/12/NMR-Mandhalas-calculation.pdf](https://www.blogs.uni-mainz.de/fb08-physics-halbach-magnets/files/2017/12/NMR-Mandhalas-calculation.pdf)
+
+- [https://www.codecogs.com/library/physics/magnetism/magnetic-pull-force.php](https://www.codecogs.com/library/physics/magnetism/magnetic-pull-force.php)
+
+- [https://www.researchgate.net/publication/326538337_Experimental_investigations_on_permanent_magnet_based_wheel_mechanism_for_safe_navigation_of_climbing_robot](https://www.researchgate.net/publication/326538337_Experimental_investigations_on_permanent_magnet_based_wheel_mechanism_for_safe_navigation_of_climbing_robot)
+
+- **GLOSSARY**
+
+- **Magnetic Field:**** **A magnetic field is a vector that describes the magnetic influence on moving electric charges, electric current, and magnetic material.
+
+- **Magnetic Flux:**** **Magnetic flux is a measurement of the total magnetic field which passes through a given area.
+
+- **Absolute magnetic permeability:**** **The ratio of the magnetic flux density, B, to the magnetic field strength, H, at a point in a material medium, given by the relation μabs = B/H.
+
+- **Relative magnetic permeability:**** **The relative permeability is the ratio of the permeability of a specific medium to the permeability of free space µ0. µr = µ / µ0**.**
+
+- **Remanence:**** **Remanence or remanent magnetization or residual magnetism is the magnetization left behind in a ferromagnetic material (such as iron) after an external magnetic field is removed.
+
+- **Magnetic Vector Potential:**** **The magnetic vector potential is a vector field that serves as the potential for the magnetic field. The curl of the magnetic vector potential is the magnetic field.
